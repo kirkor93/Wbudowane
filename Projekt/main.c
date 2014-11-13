@@ -49,6 +49,9 @@ void testMotor(void);
 void testRGB(void);
 void testI2C(void);
 void testAdc(void);
+void timer(int* elapsedTime);
+
+int* elapsTime;
 
 /*****************************************************************************
  *
@@ -59,6 +62,7 @@ void testAdc(void);
 int
 main(void)
 {
+  (*elapsTime) = 0;
   tU8 error;
   tU8 pid;
 
@@ -256,7 +260,7 @@ proc4(void* arg)
 static void
 proc5(void* arg)
 {
-	testAdc();
+	timer(elapsTime);
 }
 
 /*****************************************************************************
