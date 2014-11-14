@@ -108,6 +108,7 @@ lcdBacklight(tU8 onOff)
 void
 testLcd(void)
 {
+	printf("asdasd");
   initLCD();
 	lcdBacklight(FALSE);
   osSleep(10);
@@ -176,7 +177,7 @@ osSleep(1);
     writeLCD(1, 'm');
     delay37us();
     writeLCD(0, 0x80 | 0x40);
-        delay37us();
+    delay37us();
     writeLCD(1, 'p');
     delay37us();
     writeLCD(1, 'i');
@@ -192,56 +193,7 @@ osSleep(1);
 
     //move curstor to second row
   /*  writeLCD(0, 0x80 | 0x40);
-    delay37us();
-
-    osSleep(20);
-    writeLCD(1, 'L');
-    osSleep(20);
-    writeLCD(1, 'P');
-    osSleep(20);
-    writeLCD(1, 'C');
-    osSleep(20);
-    writeLCD(1, '2');
-    osSleep(20);
-    writeLCD(1, '1');
-    osSleep(20);
-    writeLCD(1, '4');
-    osSleep(20);
-    writeLCD(1, '8');
-    osSleep(20);
-    writeLCD(1, ' ');
-    osSleep(20);
-    writeLCD(1, 'E');
-    osSleep(20);
-    writeLCD(1, 'd');
-    osSleep(20);
-    writeLCD(1, 'u');
-    osSleep(20);
-    writeLCD(1, 'B');
-    osSleep(20);
-    writeLCD(1, 'o');
-    osSleep(20);
-    writeLCD(1, 'a');
-    osSleep(20);
-    writeLCD(1, 'r');
-    osSleep(20);
-    writeLCD(1, 'd');
-    osSleep(50);*/
-
-	/*	lcdBacklight(FALSE);
-    osSleep(50);
-		lcdBacklight(TRUE);
-    osSleep(50);
-		lcdBacklight(FALSE);
-    osSleep(50);
-		lcdBacklight(TRUE);
-    osSleep(50);
-		lcdBacklight(FALSE);
-    osSleep(50);
-		lcdBacklight(TRUE);
-    osSleep(50);
-		lcdBacklight(FALSE);
-    osSleep(50);*/
+    */
 
     osSleep(100000);
 

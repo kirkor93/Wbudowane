@@ -27,6 +27,9 @@ const tU8 kolko[] = {0x3c,0x42,0x81,0x81,0x81,0x81,0x42,0x3c};
 
 const tU8 krzyzyk[] = {0x81,0x42,0x24,0x18,0x18,0x24,0x42,0x81};
 
+const tU8 krzyzyk2[] = {0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF};
+
+
 const tU8 empty[] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
 
 tU8 pattern[8] = {0,0,0,0,0,0,0,0};
@@ -78,14 +81,22 @@ testLedMatrix(void)
   startTimer1(2);
 
   srand(123456);
-
-  for(;;)
+	for( ; ; )
+ // while((IOPIN0 & (1<<14)) )
   {
 
 		int znak = rand()%100;
 	    cntA++;
 	    if (cntA > sizeof(kolko)-8)
 	      cntA = 0;
+		  
+	    //BUTTON START
+		if( !(IOPIN0 & (1<<14)) ) // Evaluates to True for a 'LOW' on P0.14
+        {
+            printf("cos");
+            znak = 5;
+        }
+		//BUTTON END
 
 	    if(znak > 50)
 	    {
@@ -98,8 +109,19 @@ testLedMatrix(void)
 	      	pattern[6] = kolko[cntA+6];
 	      	pattern[7] = kolko[cntA+7];
 	    }
-	    else
+	    else if (znak == 5)
 	    	{
+	    	pattern[0] = krzyzyk2[cntA+0];
+	    	pattern[1] = krzyzyk2[cntA+1];
+	    	pattern[2] = krzyzyk2[cntA+2];
+	    	pattern[3] = krzyzyk2[cntA+3];
+	    	pattern[4] = krzyzyk2[cntA+4];
+	    	pattern[5] = krzyzyk2[cntA+5];
+	    	pattern[6] = krzyzyk2[cntA+6];
+	    	pattern[7] = krzyzyk2[cntA+7];
+	    	}
+	    else
+	    {
 	    	pattern[0] = krzyzyk[cntA+0];
 	      	pattern[1] = krzyzyk[cntA+1];
 	      	pattern[2] = krzyzyk[cntA+2];

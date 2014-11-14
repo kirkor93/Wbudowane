@@ -1,4 +1,4 @@
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccLmv34U.s 			page 1
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cclWiPnL.s 			page 1
 
 
    1              		.code	16
@@ -9,8 +9,8 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccLmv34U.s 			page 1
    6              	.Ldebug_info0:
    7              		.section	.debug_line,"",%progbits
    8              	.Ldebug_line0:
-   9 0000 95000000 		.text
-   9      02005600 
+   9 0000 41000000 		.text
+   9      02002200 
    9      00000201 
    9      FB0E0D00 
    9      01010101 
@@ -35,662 +35,326 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccLmv34U.s 			page 1
   10:testMotor.c   **** #include "../pre_emptive_os/api/general.h"
   11:testMotor.c   **** #include <printf_P.h>
   12:testMotor.c   **** #include <lpc2xxx.h>
-  13:testMotor.c   **** 
-  14:testMotor.c   **** /*****************************************************************************
-  15:testMotor.c   ****  *
-  16:testMotor.c   ****  * Description:
-  17:testMotor.c   ****  *    A process entry function. 
-  18:testMotor.c   ****  *
-  19:testMotor.c   ****  ****************************************************************************/
-  20:testMotor.c   **** void
-  21:testMotor.c   **** testMotor(void)
-  22:testMotor.c   **** {
-  19              		.loc 1 22 0
-  20 0000 70B5     		push	{r4, r5, r6, lr}
+  13:testMotor.c   ****  
+  14:testMotor.c   **** #define BUZZ 7
+  15:testMotor.c   **** 
+  16:testMotor.c   **** /*****************************************************************************
+  17:testMotor.c   ****  *
+  18:testMotor.c   ****  * Description:
+  19:testMotor.c   ****  *    A process entry function. 
+  20:testMotor.c   ****  *
+  21:testMotor.c   ****  ****************************************************************************/
+  22:testMotor.c   **** void
+  23:testMotor.c   **** testMotor(void)
+  24:testMotor.c   **** {
+  19              		.loc 1 24 0
+  20 0000 10B5     		push	{r4, lr}
   21              	.LCFI0:
-  23:testMotor.c   **** 	tU8  continueTest;
-  24:testMotor.c   **** 	tU32 counter = 0;
-  25:testMotor.c   **** 	tU8  direction = 0;
-  26:testMotor.c   **** 	tU8  forward = 0;
-  27:testMotor.c   **** 	
-  28:testMotor.c   ****   PINSEL0 |= 0x000a0000;  //Enable PWM4 on P0.8 and PWM6 on P0.9
-  22              		.loc 1 28 0
-  23 0002 3249     		ldr	r1, .L20
-  24 0004 A023     		mov	r3, #160
-  25 0006 0A68     		ldr	r2, [r1]
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccLmv34U.s 			page 2
+  25:testMotor.c   **** 	PINSEL0   =   0x00;     //Configure Port0.7 as GPIO
+  22              		.loc 1 25 0
+  23 0002 0A4B     		ldr	r3, .L4
+  24 0004 0022     		mov	r2, #0
+  25 0006 1A60     		str	r2, [r3]
+  26:testMotor.c   ****    IODIR0   =   3 << BUZZ; //Configure Port0.7 as O/P pin
+  26              		.loc 1 26 0
+  27 0008 C023     		mov	r3, #192
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cclWiPnL.s 			page 2
 
 
-  26 0008 1B03     		lsl	r3, r3, #12
-  27 000a 1A43     		orr	r2, r2, r3
-  28 000c 0A60     		str	r2, [r1]
-  29:testMotor.c   ****   IODIR0  |= 0x00000400;  //P0.10 = output
-  29              		.loc 1 29 0
-  30 000e 304A     		ldr	r2, .L20+4
-  31 0010 8020     		mov	r0, #128
-  32 0012 1368     		ldr	r3, [r2]
-  33 0014 C000     		lsl	r0, r0, #3
-  34 0016 0343     		orr	r3, r3, r0
-  35 0018 1360     		str	r3, [r2]
-  30:testMotor.c   ****   IOCLR0   = 0x00000400;  //set P0.10 low = disable motor
-  36              		.loc 1 30 0
-  37 001a 2E4B     		ldr	r3, .L20+8
-  38 001c 1860     		str	r0, [r3]
-  31:testMotor.c   **** 
-  32:testMotor.c   ****   //PULSE WIDTH MODULATION INIT*********************************************
-  33:testMotor.c   ****   PWM_PR  = 0x00;    // Prescale Register
-  39              		.loc 1 33 0
-  40 001e 2E4B     		ldr	r3, .L20+12
-  41 0020 0021     		mov	r1, #0
-  42 0022 1960     		str	r1, [r3]
-  34:testMotor.c   ****   PWM_MCR = 0x02;    // Match Control Register
-  43              		.loc 1 34 0
-  44 0024 0222     		mov	r2, #2
-  45 0026 0833     		add	r3, r3, #8
-  46 0028 1A60     		str	r2, [r3]
-  35:testMotor.c   ****   PWM_MR0 = 0x1000;    // TOTAL PERIODTID   T
-  47              		.loc 1 35 0
-  48 002a 2C4A     		ldr	r2, .L20+16
-  49 002c 8023     		mov	r3, #128
-  50 002e 5B01     		lsl	r3, r3, #5
-  51 0030 1360     		str	r3, [r2]
-  36:testMotor.c   ****   PWM_MR4 = 0x0000;    // HÖG SIGNAL        t
-  52              		.loc 1 36 0
-  53 0032 2B4B     		ldr	r3, .L20+20
-  54 0034 1960     		str	r1, [r3]
-  37:testMotor.c   ****   PWM_MR6 = 0x0000;    // HÖG SIGNAL        t
-  55              		.loc 1 37 0
-  56 0036 0833     		add	r3, r3, #8
-  57 0038 1960     		str	r1, [r3]
-  38:testMotor.c   ****   PWM_LER = 0x51;    // Latch Enable Register
-  58              		.loc 1 38 0
-  59 003a 5122     		mov	r2, #81
-  60 003c 0833     		add	r3, r3, #8
-  61 003e 1A60     		str	r2, [r3]
-  39:testMotor.c   ****   PWM_PCR = 0x5000;  // Prescale Counter Register PWMENA4, PWMENA6
-  62              		.loc 1 39 0
-  63 0040 284A     		ldr	r2, .L20+24
-  64 0042 A023     		mov	r3, #160
-  65 0044 DB01     		lsl	r3, r3, #7
-  66 0046 1360     		str	r3, [r2]
-  40:testMotor.c   ****   PWM_TCR = 0x09;    // Counter Enable och PWM Enable
-  67              		.loc 1 40 0
-  68 0048 274B     		ldr	r3, .L20+28
-  69 004a 0922     		mov	r2, #9
-  70 004c 1A60     		str	r2, [r3]
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccLmv34U.s 			page 3
+  28 000a 094A     		ldr	r2, .L4+4
+  29 000c 5B00     		lsl	r3, r3, #1
+  30 000e 1360     		str	r3, [r2]
+  31              	.L2:
+  27:testMotor.c   ****  
+  28:testMotor.c   **** 	while(1)
+  29:testMotor.c   **** 	{
+  30:testMotor.c   ****      IOSET0 = 1 << BUZZ;
+  32              		.loc 1 30 0
+  33 0010 084B     		ldr	r3, .L4+8
+  34 0012 8024     		mov	r4, #128
+  31:testMotor.c   ****      osSleep(1000);
+  35              		.loc 1 31 0
+  36 0014 FA20     		mov	r0, #250
+  37              		.loc 1 30 0
+  38 0016 1C60     		str	r4, [r3]
+  39              		.loc 1 31 0
+  40 0018 8000     		lsl	r0, r0, #2
+  41 001a FFF7FEFF 		bl	osSleep
+  32:testMotor.c   ****     IOCLR0 = 1 << BUZZ;
+  42              		.loc 1 32 0
+  43 001e 064B     		ldr	r3, .L4+12
+  33:testMotor.c   ****      osSleep(1000);
+  44              		.loc 1 33 0
+  45 0020 FA20     		mov	r0, #250
+  46              		.loc 1 32 0
+  47 0022 1C60     		str	r4, [r3]
+  48              		.loc 1 33 0
+  49 0024 8000     		lsl	r0, r0, #2
+  50 0026 FFF7FEFF 		bl	osSleep
+  51 002a F1E7     		b	.L2
+  52              	.L5:
+  53              		.align	2
+  54              	.L4:
+  55 002c 00C002E0 		.word	-536690688
+  56 0030 088002E0 		.word	-536707064
+  57 0034 048002E0 		.word	-536707068
+  58 0038 0C8002E0 		.word	-536707060
+  59              	.LFE2:
+  60              		.size	testMotor, .-testMotor
+  61              		.section	.debug_frame,"",%progbits
+  62              	.Lframe0:
+  63 0000 0C000000 		.4byte	.LECIE0-.LSCIE0
+  64              	.LSCIE0:
+  65 0004 FFFFFFFF 		.4byte	0xffffffff
+  66 0008 01       		.byte	0x1
+  67 0009 00       		.ascii	"\000"
+  68 000a 01       		.uleb128 0x1
+  69 000b 7C       		.sleb128 -4
+  70 000c 0E       		.byte	0xe
+  71 000d 0C       		.byte	0xc
+  72 000e 0D       		.uleb128 0xd
+  73 000f 00       		.uleb128 0x0
+  74              		.align	2
+  75              	.LECIE0:
+  76              	.LSFDE0:
+  77 0010 14000000 		.4byte	.LEFDE0-.LASFDE0
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cclWiPnL.s 			page 3
 
 
-  41:testMotor.c   ****   //************************************************************************ 
-  42:testMotor.c   ****   IOSET0   = 0x00000400;  //set P0.10 high = enable motor
-  71              		.loc 1 42 0
-  72 004e 274B     		ldr	r3, .L20+32
-  73 0050 1860     		str	r0, [r3]
-  74 0052 0024     		mov	r4, #0
-  75              	.LVL0:
-  76 0054 0025     		mov	r5, #0
-  77              	.LVL1:
-  78 0056 0026     		mov	r6, #0
-  79              	.LVL2:
-  80              	.L18:
-  43:testMotor.c   **** 
-  44:testMotor.c   ****   continueTest = TRUE;
-  45:testMotor.c   ****   while(continueTest == TRUE)
-  46:testMotor.c   ****   {
-  47:testMotor.c   ****     if (direction == 0)
-  81              		.loc 1 47 0
-  82 0058 002D     		cmp	r5, #0
-  83 005a 06D1     		bne	.L3
-  48:testMotor.c   ****     {
-  49:testMotor.c   ****       counter += 0x0010;
-  50:testMotor.c   ****       if (counter > 0x1100)
-  84              		.loc 1 50 0
-  85 005c 8823     		mov	r3, #136
-  86              		.loc 1 49 0
-  87 005e 1034     		add	r4, r4, #16
-  88              		.loc 1 50 0
-  89 0060 5B01     		lsl	r3, r3, #5
-  90 0062 9C42     		cmp	r4, r3
-  91 0064 12D9     		bls	.L5
-  92 0066 0125     		mov	r5, #1
-  93 0068 10E0     		b	.L5
-  94              	.L3:
-  51:testMotor.c   ****       {
-  52:testMotor.c   ****         direction = 1;
-  53:testMotor.c   ****       }
-  54:testMotor.c   ****     }
-  55:testMotor.c   ****     else
-  56:testMotor.c   ****     {
-  57:testMotor.c   ****   	  if (counter == 0x0000)
-  95              		.loc 1 57 0
-  96 006a 002C     		cmp	r4, #0
-  97 006c 0DD1     		bne	.L7
-  58:testMotor.c   ****   	  {
-  59:testMotor.c   ****   		  direction = 0;
-  60:testMotor.c   **** 
-  61:testMotor.c   ****         PWM_MR4 = counter;    // HÖG SIGNAL
-  98              		.loc 1 61 0
-  99 006e 1C4B     		ldr	r3, .L20+20
- 100 0070 1C60     		str	r4, [r3]
-  62:testMotor.c   ****         PWM_MR6 = counter;    // HÖG SIGNAL
- 101              		.loc 1 62 0
- 102 0072 0833     		add	r3, r3, #8
- 103 0074 1C60     		str	r4, [r3]
-  63:testMotor.c   ****         PWM_LER = 0x50;    // Latch Enable Register
- 104              		.loc 1 63 0
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccLmv34U.s 			page 4
+  78              	.LASFDE0:
+  79 0014 00000000 		.4byte	.Lframe0
+  80 0018 00000000 		.4byte	.LFB2
+  81 001c 3C000000 		.4byte	.LFE2-.LFB2
+  82 0020 42       		.byte	0x4
+  83              		.4byte	.LCFI0-.LFB2
+  84 0021 0E       		.byte	0xe
+  85 0022 08       		.uleb128 0x8
+  86 0023 84       		.byte	0x84
+  87 0024 02       		.uleb128 0x2
+  88 0025 8E       		.byte	0x8e
+  89 0026 01       		.uleb128 0x1
+  90 0027 00       		.align	2
+  91              	.LEFDE0:
+  92              		.text
+  93              	.Letext0:
+  94              		.section	.debug_loc,"",%progbits
+  95              	.Ldebug_loc0:
+  96              	.LLST0:
+  97 0000 00000000 		.4byte	.LFB2-.Ltext0
+  98 0004 02000000 		.4byte	.LCFI0-.Ltext0
+  99 0008 0100     		.2byte	0x1
+ 100 000a 5D       		.byte	0x5d
+ 101 000b 02000000 		.4byte	.LCFI0-.Ltext0
+ 102 000f 3C000000 		.4byte	.LFE2-.Ltext0
+ 103 0013 0200     		.2byte	0x2
+ 104 0015 7D       		.byte	0x7d
+ 105 0016 08       		.sleb128 8
+ 106 0017 00000000 		.4byte	0x0
+ 107 001b 00000000 		.4byte	0x0
+ 108              		.section	.debug_info
+ 109 0000 68000000 		.4byte	0x68
+ 110 0004 0200     		.2byte	0x2
+ 111 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 112 000a 04       		.byte	0x4
+ 113 000b 01       		.uleb128 0x1
+ 114 000c 00000000 		.4byte	.Ldebug_line0
+ 115 0010 3C000000 		.4byte	.Letext0
+ 116 0014 00000000 		.4byte	.Ltext0
+ 117 0018 4C000000 		.4byte	.LASF6
+ 118 001c 01       		.byte	0x1
+ 119 001d 40000000 		.4byte	.LASF7
+ 120 0021 62000000 		.4byte	.LASF8
+ 121 0025 02       		.uleb128 0x2
+ 122 0026 00000000 		.4byte	.LASF0
+ 123 002a 01       		.byte	0x1
+ 124 002b 08       		.byte	0x8
+ 125 002c 02       		.uleb128 0x2
+ 126 002d 20000000 		.4byte	.LASF1
+ 127 0031 02       		.byte	0x2
+ 128 0032 07       		.byte	0x7
+ 129 0033 02       		.uleb128 0x2
+ 130 0034 33000000 		.4byte	.LASF2
+ 131 0038 04       		.byte	0x4
+ 132 0039 07       		.byte	0x7
+ 133 003a 02       		.uleb128 0x2
+ 134 003b 93000000 		.4byte	.LASF3
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cclWiPnL.s 			page 4
 
 
- 105 0076 5022     		mov	r2, #80
- 106 0078 0833     		add	r3, r3, #8
- 107 007a 1A60     		str	r2, [r3]
-  64:testMotor.c   **** 
-  65:testMotor.c   ****         forward++;
- 108              		.loc 1 65 0
- 109 007c 731C     		add	r3, r6, #1
- 110 007e 1B06     		lsl	r3, r3, #24
- 111 0080 1E0E     		lsr	r6, r3, #24
-  66:testMotor.c   ****         if (forward > 1)
- 112              		.loc 1 66 0
- 113 0082 012E     		cmp	r6, #1
- 114 0084 12D8     		bhi	.L9
- 115 0086 0025     		mov	r5, #0
- 116 0088 00E0     		b	.L5
- 117              	.L7:
-  67:testMotor.c   ****         {
-  68:testMotor.c   ****           forward = 0;
-  69:testMotor.c   **** continueTest = FALSE;
-  70:testMotor.c   ****         }
-  71:testMotor.c   **** 
-  72:testMotor.c   ****       }
-  73:testMotor.c   ****       else
-  74:testMotor.c   ****         counter -= 0x0010;
- 118              		.loc 1 74 0
- 119 008a 103C     		sub	r4, r4, #16
- 120              	.L5:
-  75:testMotor.c   ****     }
-  76:testMotor.c   ****     
-  77:testMotor.c   ****     if (forward == 0)
- 121              		.loc 1 77 0
- 122 008c 002E     		cmp	r6, #0
- 123 008e 04D1     		bne	.L11
-  78:testMotor.c   ****     {
-  79:testMotor.c   ****       PWM_MR4 = counter;    // HÖG SIGNAL
- 124              		.loc 1 79 0
- 125 0090 134B     		ldr	r3, .L20+20
-  80:testMotor.c   ****       PWM_LER = 0x10;    // Latch Enable Register
- 126              		.loc 1 80 0
- 127 0092 1022     		mov	r2, #16
- 128              		.loc 1 79 0
- 129 0094 1C60     		str	r4, [r3]
- 130              		.loc 1 80 0
- 131 0096 1033     		add	r3, r3, #16
- 132 0098 03E0     		b	.L19
- 133              	.L11:
-  81:testMotor.c   ****     }
-  82:testMotor.c   ****     else
-  83:testMotor.c   ****     {
-  84:testMotor.c   ****       PWM_MR6 = counter;    // HÖG SIGNAL
- 134              		.loc 1 84 0
- 135 009a 154B     		ldr	r3, .L20+36
-  85:testMotor.c   ****       PWM_LER = 0x40;    // Latch Enable Register
- 136              		.loc 1 85 0
- 137 009c 4022     		mov	r2, #64
- 138              		.loc 1 84 0
- 139 009e 1C60     		str	r4, [r3]
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccLmv34U.s 			page 5
+ 135 003f 01       		.byte	0x1
+ 136 0040 06       		.byte	0x6
+ 137 0041 02       		.uleb128 0x2
+ 138 0042 58000000 		.4byte	.LASF4
+ 139 0046 02       		.byte	0x2
+ 140 0047 05       		.byte	0x5
+ 141 0048 03       		.uleb128 0x3
+ 142 0049 696E7400 		.ascii	"int\000"
+ 143 004d 04       		.byte	0x4
+ 144 004e 05       		.byte	0x5
+ 145 004f 02       		.uleb128 0x2
+ 146 0050 0E000000 		.4byte	.LASF5
+ 147 0054 04       		.byte	0x4
+ 148 0055 07       		.byte	0x7
+ 149 0056 04       		.uleb128 0x4
+ 150 0057 01       		.byte	0x1
+ 151 0058 89000000 		.4byte	.LASF9
+ 152 005c 01       		.byte	0x1
+ 153 005d 18       		.byte	0x18
+ 154 005e 01       		.byte	0x1
+ 155 005f 00000000 		.4byte	.LFB2
+ 156 0063 3C000000 		.4byte	.LFE2
+ 157 0067 00000000 		.4byte	.LLST0
+ 158 006b 00       		.byte	0x0
+ 159              		.section	.debug_abbrev
+ 160 0000 01       		.uleb128 0x1
+ 161 0001 11       		.uleb128 0x11
+ 162 0002 01       		.byte	0x1
+ 163 0003 10       		.uleb128 0x10
+ 164 0004 06       		.uleb128 0x6
+ 165 0005 12       		.uleb128 0x12
+ 166 0006 01       		.uleb128 0x1
+ 167 0007 11       		.uleb128 0x11
+ 168 0008 01       		.uleb128 0x1
+ 169 0009 25       		.uleb128 0x25
+ 170 000a 0E       		.uleb128 0xe
+ 171 000b 13       		.uleb128 0x13
+ 172 000c 0B       		.uleb128 0xb
+ 173 000d 03       		.uleb128 0x3
+ 174 000e 0E       		.uleb128 0xe
+ 175 000f 1B       		.uleb128 0x1b
+ 176 0010 0E       		.uleb128 0xe
+ 177 0011 00       		.byte	0x0
+ 178 0012 00       		.byte	0x0
+ 179 0013 02       		.uleb128 0x2
+ 180 0014 24       		.uleb128 0x24
+ 181 0015 00       		.byte	0x0
+ 182 0016 03       		.uleb128 0x3
+ 183 0017 0E       		.uleb128 0xe
+ 184 0018 0B       		.uleb128 0xb
+ 185 0019 0B       		.uleb128 0xb
+ 186 001a 3E       		.uleb128 0x3e
+ 187 001b 0B       		.uleb128 0xb
+ 188 001c 00       		.byte	0x0
+ 189 001d 00       		.byte	0x0
+ 190 001e 03       		.uleb128 0x3
+ 191 001f 24       		.uleb128 0x24
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cclWiPnL.s 			page 5
 
 
- 140              		.loc 1 85 0
- 141 00a0 0833     		add	r3, r3, #8
- 142              	.L19:
- 143 00a2 1A60     		str	r2, [r3]
-  86:testMotor.c   ****     }
-  87:testMotor.c   **** 
-  88:testMotor.c   **** //printf("\n%d", counter);    
-  89:testMotor.c   ****     osSleep(1);
- 144              		.loc 1 89 0
- 145 00a4 0120     		mov	r0, #1
- 146 00a6 FFF7FEFF 		bl	osSleep
- 147 00aa D5E7     		b	.L18
- 148              	.L9:
- 149              		.loc 1 79 0
- 150 00ac 0C4B     		ldr	r3, .L20+20
- 151 00ae 0022     		mov	r2, #0
- 152 00b0 1A60     		str	r2, [r3]
- 153              		.loc 1 80 0
- 154 00b2 1022     		mov	r2, #16
- 155 00b4 1033     		add	r3, r3, #16
- 156 00b6 1A60     		str	r2, [r3]
- 157              		.loc 1 89 0
- 158 00b8 0120     		mov	r0, #1
- 159 00ba FFF7FEFF 		bl	osSleep
-  90:testMotor.c   ****   }
-  91:testMotor.c   ****   IOCLR0   = 0x00000400;  //set P0.10 low = disable motor
- 160              		.loc 1 91 0
- 161 00be 054A     		ldr	r2, .L20+8
- 162 00c0 8023     		mov	r3, #128
- 163 00c2 DB00     		lsl	r3, r3, #3
- 164 00c4 1360     		str	r3, [r2]
-  92:testMotor.c   **** }
- 165              		.loc 1 92 0
- 166              		@ sp needed for prologue
- 167              	.LVL3:
- 168              	.LVL4:
- 169              	.LVL5:
- 170 00c6 70BC     		pop	{r4, r5, r6}
- 171 00c8 01BC     		pop	{r0}
- 172 00ca 0047     		bx	r0
- 173              	.L21:
- 174              		.align	2
- 175              	.L20:
- 176 00cc 00C002E0 		.word	-536690688
- 177 00d0 088002E0 		.word	-536707064
- 178 00d4 0C8002E0 		.word	-536707060
- 179 00d8 0C4001E0 		.word	-536788980
- 180 00dc 184001E0 		.word	-536788968
- 181 00e0 404001E0 		.word	-536788928
- 182 00e4 4C4001E0 		.word	-536788916
- 183 00e8 044001E0 		.word	-536788988
- 184 00ec 048002E0 		.word	-536707068
- 185 00f0 484001E0 		.word	-536788920
- 186              	.LFE2:
- 187              		.size	testMotor, .-testMotor
- 188              		.section	.debug_frame,"",%progbits
- 189              	.Lframe0:
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccLmv34U.s 			page 6
+ 192 0020 00       		.byte	0x0
+ 193 0021 03       		.uleb128 0x3
+ 194 0022 08       		.uleb128 0x8
+ 195 0023 0B       		.uleb128 0xb
+ 196 0024 0B       		.uleb128 0xb
+ 197 0025 3E       		.uleb128 0x3e
+ 198 0026 0B       		.uleb128 0xb
+ 199 0027 00       		.byte	0x0
+ 200 0028 00       		.byte	0x0
+ 201 0029 04       		.uleb128 0x4
+ 202 002a 2E       		.uleb128 0x2e
+ 203 002b 00       		.byte	0x0
+ 204 002c 3F       		.uleb128 0x3f
+ 205 002d 0C       		.uleb128 0xc
+ 206 002e 03       		.uleb128 0x3
+ 207 002f 0E       		.uleb128 0xe
+ 208 0030 3A       		.uleb128 0x3a
+ 209 0031 0B       		.uleb128 0xb
+ 210 0032 3B       		.uleb128 0x3b
+ 211 0033 0B       		.uleb128 0xb
+ 212 0034 27       		.uleb128 0x27
+ 213 0035 0C       		.uleb128 0xc
+ 214 0036 11       		.uleb128 0x11
+ 215 0037 01       		.uleb128 0x1
+ 216 0038 12       		.uleb128 0x12
+ 217 0039 01       		.uleb128 0x1
+ 218 003a 40       		.uleb128 0x40
+ 219 003b 06       		.uleb128 0x6
+ 220 003c 00       		.byte	0x0
+ 221 003d 00       		.byte	0x0
+ 222 003e 00       		.byte	0x0
+ 223              		.section	.debug_pubnames,"",%progbits
+ 224 0000 1C000000 		.4byte	0x1c
+ 225 0004 0200     		.2byte	0x2
+ 226 0006 00000000 		.4byte	.Ldebug_info0
+ 227 000a 6C000000 		.4byte	0x6c
+ 228 000e 56000000 		.4byte	0x56
+ 229 0012 74657374 		.ascii	"testMotor\000"
+ 229      4D6F746F 
+ 229      7200
+ 230 001c 00000000 		.4byte	0x0
+ 231              		.section	.debug_aranges,"",%progbits
+ 232 0000 1C000000 		.4byte	0x1c
+ 233 0004 0200     		.2byte	0x2
+ 234 0006 00000000 		.4byte	.Ldebug_info0
+ 235 000a 04       		.byte	0x4
+ 236 000b 00       		.byte	0x0
+ 237 000c 0000     		.2byte	0x0
+ 238 000e 0000     		.2byte	0x0
+ 239 0010 00000000 		.4byte	.Ltext0
+ 240 0014 3C000000 		.4byte	.Letext0-.Ltext0
+ 241 0018 00000000 		.4byte	0x0
+ 242 001c 00000000 		.4byte	0x0
+ 243              		.section	.debug_str,"MS",%progbits,1
+ 244              	.LASF0:
+ 245 0000 756E7369 		.ascii	"unsigned char\000"
+ 245      676E6564 
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cclWiPnL.s 			page 6
 
 
- 190 0000 0C000000 		.4byte	.LECIE0-.LSCIE0
- 191              	.LSCIE0:
- 192 0004 FFFFFFFF 		.4byte	0xffffffff
- 193 0008 01       		.byte	0x1
- 194 0009 00       		.ascii	"\000"
- 195 000a 01       		.uleb128 0x1
- 196 000b 7C       		.sleb128 -4
- 197 000c 0E       		.byte	0xe
- 198 000d 0C       		.byte	0xc
- 199 000e 0D       		.uleb128 0xd
- 200 000f 00       		.uleb128 0x0
- 201              		.align	2
- 202              	.LECIE0:
- 203              	.LSFDE0:
- 204 0010 18000000 		.4byte	.LEFDE0-.LASFDE0
- 205              	.LASFDE0:
- 206 0014 00000000 		.4byte	.Lframe0
- 207 0018 00000000 		.4byte	.LFB2
- 208 001c F4000000 		.4byte	.LFE2-.LFB2
- 209 0020 42       		.byte	0x4
- 210              		.4byte	.LCFI0-.LFB2
- 211 0021 0E       		.byte	0xe
- 212 0022 10       		.uleb128 0x10
- 213 0023 84       		.byte	0x84
- 214 0024 04       		.uleb128 0x4
- 215 0025 85       		.byte	0x85
- 216 0026 03       		.uleb128 0x3
- 217 0027 86       		.byte	0x86
- 218 0028 02       		.uleb128 0x2
- 219 0029 8E       		.byte	0x8e
- 220 002a 01       		.uleb128 0x1
- 221 002b 00       		.align	2
- 222              	.LEFDE0:
- 223              		.file 2 "./startup/../pre_emptive_os/api/../api/general.h"
- 224              		.text
- 225              	.Letext0:
- 226              		.section	.debug_loc,"",%progbits
- 227              	.Ldebug_loc0:
- 228              	.LLST0:
- 229 0000 00000000 		.4byte	.LFB2-.Ltext0
- 230 0004 02000000 		.4byte	.LCFI0-.Ltext0
- 231 0008 0100     		.2byte	0x1
- 232 000a 5D       		.byte	0x5d
- 233 000b 02000000 		.4byte	.LCFI0-.Ltext0
- 234 000f F4000000 		.4byte	.LFE2-.Ltext0
- 235 0013 0200     		.2byte	0x2
- 236 0015 7D       		.byte	0x7d
- 237 0016 10       		.sleb128 16
- 238 0017 00000000 		.4byte	0x0
- 239 001b 00000000 		.4byte	0x0
- 240              	.LLST1:
- 241 001f 54000000 		.4byte	.LVL0-.Ltext0
- 242 0023 C6000000 		.4byte	.LVL3-.Ltext0
- 243 0027 0100     		.2byte	0x1
- 244 0029 54       		.byte	0x54
- 245 002a 00000000 		.4byte	0x0
- 246 002e 00000000 		.4byte	0x0
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccLmv34U.s 			page 7
-
-
- 247              	.LLST2:
- 248 0032 56000000 		.4byte	.LVL1-.Ltext0
- 249 0036 C6000000 		.4byte	.LVL4-.Ltext0
- 250 003a 0100     		.2byte	0x1
- 251 003c 55       		.byte	0x55
- 252 003d 00000000 		.4byte	0x0
- 253 0041 00000000 		.4byte	0x0
- 254              	.LLST3:
- 255 0045 58000000 		.4byte	.LVL2-.Ltext0
- 256 0049 C6000000 		.4byte	.LVL5-.Ltext0
- 257 004d 0100     		.2byte	0x1
- 258 004f 56       		.byte	0x56
- 259 0050 00000000 		.4byte	0x0
- 260 0054 00000000 		.4byte	0x0
- 261              		.section	.debug_info
- 262 0000 B7000000 		.4byte	0xb7
- 263 0004 0200     		.2byte	0x2
- 264 0006 00000000 		.4byte	.Ldebug_abbrev0
- 265 000a 04       		.byte	0x4
- 266 000b 01       		.uleb128 0x1
- 267 000c 00000000 		.4byte	.Ldebug_line0
- 268 0010 F4000000 		.4byte	.Letext0
- 269 0014 00000000 		.4byte	.Ltext0
- 270 0018 73000000 		.4byte	.LASF11
- 271 001c 01       		.byte	0x1
- 272 001d 67000000 		.4byte	.LASF12
- 273 0021 8E000000 		.4byte	.LASF13
- 274 0025 02       		.uleb128 0x2
- 275 0026 74553800 		.ascii	"tU8\000"
- 276 002a 02       		.byte	0x2
- 277 002b 47       		.byte	0x47
- 278 002c 30000000 		.4byte	0x30
- 279 0030 03       		.uleb128 0x3
- 280 0031 0A000000 		.4byte	.LASF0
- 281 0035 01       		.byte	0x1
- 282 0036 08       		.byte	0x8
- 283 0037 03       		.uleb128 0x3
- 284 0038 37000000 		.4byte	.LASF1
- 285 003c 02       		.byte	0x2
- 286 003d 07       		.byte	0x7
- 287 003e 04       		.uleb128 0x4
- 288 003f 7F000000 		.4byte	.LASF2
- 289 0043 02       		.byte	0x2
- 290 0044 49       		.byte	0x49
- 291 0045 49000000 		.4byte	0x49
- 292 0049 03       		.uleb128 0x3
- 293 004a 5A000000 		.4byte	.LASF3
- 294 004e 04       		.byte	0x4
- 295 004f 07       		.byte	0x7
- 296 0050 03       		.uleb128 0x3
- 297 0051 BF000000 		.4byte	.LASF4
- 298 0055 01       		.byte	0x1
- 299 0056 06       		.byte	0x6
- 300 0057 03       		.uleb128 0x3
- 301 0058 84000000 		.4byte	.LASF5
- 302 005c 02       		.byte	0x2
- 303 005d 05       		.byte	0x5
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccLmv34U.s 			page 8
-
-
- 304 005e 05       		.uleb128 0x5
- 305 005f 696E7400 		.ascii	"int\000"
- 306 0063 04       		.byte	0x4
- 307 0064 05       		.byte	0x5
- 308 0065 03       		.uleb128 0x3
- 309 0066 18000000 		.4byte	.LASF6
- 310 006a 04       		.byte	0x4
- 311 006b 07       		.byte	0x7
- 312 006c 06       		.uleb128 0x6
- 313 006d 01       		.byte	0x1
- 314 006e B5000000 		.4byte	.LASF14
- 315 0072 01       		.byte	0x1
- 316 0073 16       		.byte	0x16
- 317 0074 01       		.byte	0x1
- 318 0075 00000000 		.4byte	.LFB2
- 319 0079 F4000000 		.4byte	.LFE2
- 320 007d 00000000 		.4byte	.LLST0
- 321 0081 07       		.uleb128 0x7
- 322 0082 2A000000 		.4byte	.LASF7
- 323 0086 01       		.byte	0x1
- 324 0087 17       		.byte	0x17
- 325 0088 25000000 		.4byte	0x25
- 326 008c 08       		.uleb128 0x8
- 327 008d 4A000000 		.4byte	.LASF8
- 328 0091 01       		.byte	0x1
- 329 0092 18       		.byte	0x18
- 330 0093 3E000000 		.4byte	0x3e
- 331 0097 1F000000 		.4byte	.LLST1
- 332 009b 08       		.uleb128 0x8
- 333 009c 00000000 		.4byte	.LASF9
- 334 00a0 01       		.byte	0x1
- 335 00a1 19       		.byte	0x19
- 336 00a2 25000000 		.4byte	0x25
- 337 00a6 32000000 		.4byte	.LLST2
- 338 00aa 08       		.uleb128 0x8
- 339 00ab 52000000 		.4byte	.LASF10
- 340 00af 01       		.byte	0x1
- 341 00b0 1A       		.byte	0x1a
- 342 00b1 25000000 		.4byte	0x25
- 343 00b5 45000000 		.4byte	.LLST3
- 344 00b9 00       		.byte	0x0
- 345 00ba 00       		.byte	0x0
- 346              		.section	.debug_abbrev
- 347 0000 01       		.uleb128 0x1
- 348 0001 11       		.uleb128 0x11
- 349 0002 01       		.byte	0x1
- 350 0003 10       		.uleb128 0x10
- 351 0004 06       		.uleb128 0x6
- 352 0005 12       		.uleb128 0x12
- 353 0006 01       		.uleb128 0x1
- 354 0007 11       		.uleb128 0x11
- 355 0008 01       		.uleb128 0x1
- 356 0009 25       		.uleb128 0x25
- 357 000a 0E       		.uleb128 0xe
- 358 000b 13       		.uleb128 0x13
- 359 000c 0B       		.uleb128 0xb
- 360 000d 03       		.uleb128 0x3
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccLmv34U.s 			page 9
-
-
- 361 000e 0E       		.uleb128 0xe
- 362 000f 1B       		.uleb128 0x1b
- 363 0010 0E       		.uleb128 0xe
- 364 0011 00       		.byte	0x0
- 365 0012 00       		.byte	0x0
- 366 0013 02       		.uleb128 0x2
- 367 0014 16       		.uleb128 0x16
- 368 0015 00       		.byte	0x0
- 369 0016 03       		.uleb128 0x3
- 370 0017 08       		.uleb128 0x8
- 371 0018 3A       		.uleb128 0x3a
- 372 0019 0B       		.uleb128 0xb
- 373 001a 3B       		.uleb128 0x3b
- 374 001b 0B       		.uleb128 0xb
- 375 001c 49       		.uleb128 0x49
- 376 001d 13       		.uleb128 0x13
- 377 001e 00       		.byte	0x0
- 378 001f 00       		.byte	0x0
- 379 0020 03       		.uleb128 0x3
- 380 0021 24       		.uleb128 0x24
- 381 0022 00       		.byte	0x0
- 382 0023 03       		.uleb128 0x3
- 383 0024 0E       		.uleb128 0xe
- 384 0025 0B       		.uleb128 0xb
- 385 0026 0B       		.uleb128 0xb
- 386 0027 3E       		.uleb128 0x3e
- 387 0028 0B       		.uleb128 0xb
- 388 0029 00       		.byte	0x0
- 389 002a 00       		.byte	0x0
- 390 002b 04       		.uleb128 0x4
- 391 002c 16       		.uleb128 0x16
- 392 002d 00       		.byte	0x0
- 393 002e 03       		.uleb128 0x3
- 394 002f 0E       		.uleb128 0xe
- 395 0030 3A       		.uleb128 0x3a
- 396 0031 0B       		.uleb128 0xb
- 397 0032 3B       		.uleb128 0x3b
- 398 0033 0B       		.uleb128 0xb
- 399 0034 49       		.uleb128 0x49
- 400 0035 13       		.uleb128 0x13
- 401 0036 00       		.byte	0x0
- 402 0037 00       		.byte	0x0
- 403 0038 05       		.uleb128 0x5
- 404 0039 24       		.uleb128 0x24
- 405 003a 00       		.byte	0x0
- 406 003b 03       		.uleb128 0x3
- 407 003c 08       		.uleb128 0x8
- 408 003d 0B       		.uleb128 0xb
- 409 003e 0B       		.uleb128 0xb
- 410 003f 3E       		.uleb128 0x3e
- 411 0040 0B       		.uleb128 0xb
- 412 0041 00       		.byte	0x0
- 413 0042 00       		.byte	0x0
- 414 0043 06       		.uleb128 0x6
- 415 0044 2E       		.uleb128 0x2e
- 416 0045 01       		.byte	0x1
- 417 0046 3F       		.uleb128 0x3f
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccLmv34U.s 			page 10
-
-
- 418 0047 0C       		.uleb128 0xc
- 419 0048 03       		.uleb128 0x3
- 420 0049 0E       		.uleb128 0xe
- 421 004a 3A       		.uleb128 0x3a
- 422 004b 0B       		.uleb128 0xb
- 423 004c 3B       		.uleb128 0x3b
- 424 004d 0B       		.uleb128 0xb
- 425 004e 27       		.uleb128 0x27
- 426 004f 0C       		.uleb128 0xc
- 427 0050 11       		.uleb128 0x11
- 428 0051 01       		.uleb128 0x1
- 429 0052 12       		.uleb128 0x12
- 430 0053 01       		.uleb128 0x1
- 431 0054 40       		.uleb128 0x40
- 432 0055 06       		.uleb128 0x6
- 433 0056 00       		.byte	0x0
- 434 0057 00       		.byte	0x0
- 435 0058 07       		.uleb128 0x7
- 436 0059 34       		.uleb128 0x34
- 437 005a 00       		.byte	0x0
- 438 005b 03       		.uleb128 0x3
- 439 005c 0E       		.uleb128 0xe
- 440 005d 3A       		.uleb128 0x3a
- 441 005e 0B       		.uleb128 0xb
- 442 005f 3B       		.uleb128 0x3b
- 443 0060 0B       		.uleb128 0xb
- 444 0061 49       		.uleb128 0x49
- 445 0062 13       		.uleb128 0x13
- 446 0063 00       		.byte	0x0
- 447 0064 00       		.byte	0x0
- 448 0065 08       		.uleb128 0x8
- 449 0066 34       		.uleb128 0x34
- 450 0067 00       		.byte	0x0
- 451 0068 03       		.uleb128 0x3
- 452 0069 0E       		.uleb128 0xe
- 453 006a 3A       		.uleb128 0x3a
- 454 006b 0B       		.uleb128 0xb
- 455 006c 3B       		.uleb128 0x3b
- 456 006d 0B       		.uleb128 0xb
- 457 006e 49       		.uleb128 0x49
- 458 006f 13       		.uleb128 0x13
- 459 0070 02       		.uleb128 0x2
- 460 0071 06       		.uleb128 0x6
- 461 0072 00       		.byte	0x0
- 462 0073 00       		.byte	0x0
- 463 0074 00       		.byte	0x0
- 464              		.section	.debug_pubnames,"",%progbits
- 465 0000 1C000000 		.4byte	0x1c
- 466 0004 0200     		.2byte	0x2
- 467 0006 00000000 		.4byte	.Ldebug_info0
- 468 000a BB000000 		.4byte	0xbb
- 469 000e 6C000000 		.4byte	0x6c
- 470 0012 74657374 		.ascii	"testMotor\000"
- 470      4D6F746F 
- 470      7200
- 471 001c 00000000 		.4byte	0x0
- 472              		.section	.debug_aranges,"",%progbits
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccLmv34U.s 			page 11
-
-
- 473 0000 1C000000 		.4byte	0x1c
- 474 0004 0200     		.2byte	0x2
- 475 0006 00000000 		.4byte	.Ldebug_info0
- 476 000a 04       		.byte	0x4
- 477 000b 00       		.byte	0x0
- 478 000c 0000     		.2byte	0x0
- 479 000e 0000     		.2byte	0x0
- 480 0010 00000000 		.4byte	.Ltext0
- 481 0014 F4000000 		.4byte	.Letext0-.Ltext0
- 482 0018 00000000 		.4byte	0x0
- 483 001c 00000000 		.4byte	0x0
- 484              		.section	.debug_str,"MS",%progbits,1
- 485              	.LASF9:
- 486 0000 64697265 		.ascii	"direction\000"
- 486      6374696F 
- 486      6E00
- 487              	.LASF0:
- 488 000a 756E7369 		.ascii	"unsigned char\000"
- 488      676E6564 
- 488      20636861 
- 488      7200
- 489              	.LASF6:
- 490 0018 6C6F6E67 		.ascii	"long unsigned int\000"
- 490      20756E73 
- 490      69676E65 
- 490      6420696E 
- 490      7400
- 491              	.LASF7:
- 492 002a 636F6E74 		.ascii	"continueTest\000"
- 492      696E7565 
- 492      54657374 
- 492      00
- 493              	.LASF1:
- 494 0037 73686F72 		.ascii	"short unsigned int\000"
- 494      7420756E 
- 494      7369676E 
- 494      65642069 
- 494      6E7400
- 495              	.LASF8:
- 496 004a 636F756E 		.ascii	"counter\000"
- 496      74657200 
- 497              	.LASF10:
- 498 0052 666F7277 		.ascii	"forward\000"
- 498      61726400 
- 499              	.LASF3:
- 500 005a 756E7369 		.ascii	"unsigned int\000"
- 500      676E6564 
- 500      20696E74 
- 500      00
- 501              	.LASF12:
- 502 0067 74657374 		.ascii	"testMotor.c\000"
- 502      4D6F746F 
- 502      722E6300 
- 503              	.LASF11:
- 504 0073 474E5520 		.ascii	"GNU C 4.1.1\000"
- 504      4320342E 
- 504      312E3100 
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccLmv34U.s 			page 12
-
-
- 505              	.LASF2:
- 506 007f 74553332 		.ascii	"tU32\000"
- 506      00
- 507              	.LASF5:
- 508 0084 73686F72 		.ascii	"short int\000"
- 508      7420696E 
- 508      7400
- 509              	.LASF13:
- 510 008e 2F637967 		.ascii	"/cygdrive/c/Embedded/eclipse/Demo/2138\000"
- 510      64726976 
- 510      652F632F 
- 510      456D6265 
- 510      64646564 
- 511              	.LASF14:
- 512 00b5 74657374 		.ascii	"testMotor\000"
- 512      4D6F746F 
- 512      7200
- 513              	.LASF4:
- 514 00bf 7369676E 		.ascii	"signed char\000"
- 514      65642063 
- 514      68617200 
- 515              		.ident	"GCC: (GNU) 4.1.1"
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccLmv34U.s 			page 13
+ 245      20636861 
+ 245      7200
+ 246              	.LASF5:
+ 247 000e 6C6F6E67 		.ascii	"long unsigned int\000"
+ 247      20756E73 
+ 247      69676E65 
+ 247      6420696E 
+ 247      7400
+ 248              	.LASF1:
+ 249 0020 73686F72 		.ascii	"short unsigned int\000"
+ 249      7420756E 
+ 249      7369676E 
+ 249      65642069 
+ 249      6E7400
+ 250              	.LASF2:
+ 251 0033 756E7369 		.ascii	"unsigned int\000"
+ 251      676E6564 
+ 251      20696E74 
+ 251      00
+ 252              	.LASF7:
+ 253 0040 74657374 		.ascii	"testMotor.c\000"
+ 253      4D6F746F 
+ 253      722E6300 
+ 254              	.LASF6:
+ 255 004c 474E5520 		.ascii	"GNU C 4.1.1\000"
+ 255      4320342E 
+ 255      312E3100 
+ 256              	.LASF4:
+ 257 0058 73686F72 		.ascii	"short int\000"
+ 257      7420696E 
+ 257      7400
+ 258              	.LASF8:
+ 259 0062 2F637967 		.ascii	"/cygdrive/c/Embedded/eclipse/Demo/2138\000"
+ 259      64726976 
+ 259      652F632F 
+ 259      456D6265 
+ 259      64646564 
+ 260              	.LASF9:
+ 261 0089 74657374 		.ascii	"testMotor\000"
+ 261      4D6F746F 
+ 261      7200
+ 262              	.LASF3:
+ 263 0093 7369676E 		.ascii	"signed char\000"
+ 263      65642063 
+ 263      68617200 
+ 264              		.ident	"GCC: (GNU) 4.1.1"
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cclWiPnL.s 			page 7
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 testMotor.c
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccLmv34U.s:1      .text:00000000 $t
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccLmv34U.s:16     .text:00000000 testMotor
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccLmv34U.s:176    .text:000000cc $d
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cclWiPnL.s:1      .text:00000000 $t
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cclWiPnL.s:16     .text:00000000 testMotor
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cclWiPnL.s:55     .text:0000002c $d
 
 UNDEFINED SYMBOLS
 osSleep
