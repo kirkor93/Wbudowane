@@ -23,22 +23,6 @@
 #define PROC5_STACK_SIZE 2048
 #define INIT_STACK_SIZE  400
 
-#define PLOCK 0x00000400
-#define MR0I (1<<0) //Przerwanie kiedy time clock jest rowny match register
-
-#define PRESCALE 60000 //60000 cykli procesora zwieksza time clock o 1
-
-void initClocks();
-void initTimer0();
-void T0ISR();
-
-void setupPLL0();
-void feedSeq();
-void connectPLL0();
-
-void timer(void);
-
-
 static tU8 proc1Stack[PROC1_STACK_SIZE];
 static tU8 proc2Stack[PROC2_STACK_SIZE];
 static tU8 proc3Stack[PROC3_STACK_SIZE];
@@ -66,8 +50,6 @@ void testRGB(void);
 void testI2C(void);
 void testAdc(void);
 
-int* elapsTime;
-
 /*****************************************************************************
  *
  * Description:
@@ -77,7 +59,6 @@ int* elapsTime;
 int
 main(void)
 {
-  (*elapsTime) = 0;
   tU8 error;
   tU8 pid;
 
@@ -275,7 +256,7 @@ proc4(void* arg)
 static void
 proc5(void* arg)
 {
-	timer();
+	testAdc();
 }
 
 /*****************************************************************************
@@ -314,78 +295,4 @@ initProc(void* arg)
 void
 appTick(tU32 elapsedTime)
 {
-}
-
-void initTimer0()
-{
-	T0TCR = 0x0;
-	
-	T0PR = PRESCALE - 1; //Co 60000 cykli procesora zwieksz T0TC o 1
-	
-	T0MR0 = 499;
-	T0MCR = MR0I;
-	
-	VICVectAddr4 = (unsigned)T0ISR;	//wskaznik na funkcje, ktora ma zostac wywolana
-									//jak bedzie przerwanie
-									
-	VICVectCntl4 = 0x20 | 4; //4 bo taka jest maska VIC Channel dla timera 0
-	
-	VICIntEnable = 0x10; //Wlaczenie przerwani timera 0
-	
-	T0TCR = 0x02;
-}
-
-void T0ISR()
-{
-    long int regVal;
-    regVal = T0IR;
-        
-    IOPIN0 = ~IOPIN0;
-
-    T0IR = regVal;
-    VICVectAddr = 0x0;
-	
-	(*elapsTime)++;
-}
-
-void timer()
-{
-	initClocks();
-	initTimer0();
-	
-	IODIR0 = 0xFFFFFFFF;
-	IOPIN0 = 0xF;
-	
-	T0TCR = 0x01;
-	
-	while(1);
-}
-
-void initClocks()
-{
-	setupPLL0();
-	feedSeq();
-	connectPLL0();
-	feedSeq();
-	
-	VPBDIV = 0x01;
-}
-
-void setupPLL0()
-{
-	PLLCON = 0x01;
-	PLLCFG = 0x24;
-}
-
-void feedSeq()
-{
-	PLLFEED = 0xAA;
-	PLLFEED = 0x55;
-}
-
-void connectPLL0()
-{
-	while(!(PLLSTAT & PLOCK));
-	
-	PLLCON = 0x03;
 }
