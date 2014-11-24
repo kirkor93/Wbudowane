@@ -18,8 +18,6 @@
 #define LCD_RS        0x01000000  //P1.24
 #define LCD_BACKLIGHT 0x40000000  //P0.30
 
-extern int timerCnt;
-
 /*****************************************************************************
  *
  * Description:
@@ -178,9 +176,9 @@ testLcd(void)
   initLCD();
 	lcdBacklight(FALSE);
   osSleep(10);
-  lcdBacklight(TRUE);
   for(;;)
   {
+ 	 	lcdBacklight(TRUE);
     osSleep(50);
 
     //function set
@@ -216,22 +214,20 @@ testLcd(void)
     writeLCD(0, 0x02);
   osSleep(1);
 	
-	//writeString("trolol");
-	//writeNewLine();
-	//writeInt(12345);
-	//osSleep(2000);
-	writeInt(timerCnt);
-	osSleep(50);
-	clearLCD();
-	//writeString(":<");
-	//osSleep(2000);
-	//clearLCD();
+	writeString("trolol");
+	writeNewLine();
+	writeInt(12345);
 
     //move curstor to second row
   /*  writeLCD(0, 0x80 | 0x40);
-  */
+    */
+
+    osSleep(100000);
+
+    //display clear
+    //clearLCD();
   }
-	//lcdBacklight(FALSE);
+	lcdBacklight(FALSE);
 }
 
 

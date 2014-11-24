@@ -1,4 +1,4 @@
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 1
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccjr55YN.s 			page 1
 
 
    1              		.code	16
@@ -58,7 +58,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 1
   27:testLedMatrix.c **** 
   28:testLedMatrix.c **** const tU8 krzyzyk[] = {0x81,0x42,0x24,0x18,0x18,0x24,0x42,0x81};
   29:testLedMatrix.c **** 
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 2
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccjr55YN.s 			page 2
 
 
   30:testLedMatrix.c **** const tU8 krzyzyk2[] = {0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF};
@@ -118,7 +118,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 1
   32 0008 5B01     		lsl	r3, r3, #5
   33 000a 1A43     		orr	r2, r2, r3
   77:testLedMatrix.c ****   SPI_SPCCR = 0x08;    
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 3
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccjr55YN.s 			page 3
 
 
   34              		.loc 1 77 0
@@ -178,7 +178,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 1
   86 0056 1A60     		str	r2, [r3]
   87              		.loc 1 60 0
   88 0058 1433     		add	r3, r3, #20
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 4
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccjr55YN.s 			page 4
 
 
   89 005a 0322     		mov	r2, #3
@@ -238,7 +238,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 1
  103:testLedMatrix.c **** 	      	pattern[0] = kolko[cntA+0];
  120              		.loc 1 103 0
  121 0086 2B4A     		ldr	r2, .L11+56
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 5
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccjr55YN.s 			page 5
 
 
  104:testLedMatrix.c **** 	      	pattern[1] = kolko[cntA+1];
@@ -298,7 +298,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 1
  162              		.loc 1 117 0
  163 00b2 D370     		strb	r3, [r2, #3]
  118:testLedMatrix.c **** 	    	pattern[4] = krzyzyk2[cntA+4];
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 6
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccjr55YN.s 			page 6
 
 
  164              		.loc 1 118 0
@@ -358,7 +358,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 1
  134:testLedMatrix.c **** 	
  135:testLedMatrix.c **** 	osSleep(100);
  203              		.loc 1 135 0
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 7
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccjr55YN.s 			page 7
 
 
  204 00da 6420     		mov	r0, #100
@@ -418,7 +418,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 1
  247              	.LBE7:
  248              	.LFE3:
  249              		.size	testLedMatrix, .-testLedMatrix
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 8
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccjr55YN.s 			page 8
 
 
  250              		.global	kolko
@@ -478,7 +478,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 1
  302 0004 FFFFFFFF 		.4byte	0xffffffff
  303 0008 01       		.byte	0x1
  304 0009 00       		.ascii	"\000"
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 9
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccjr55YN.s 			page 9
 
 
  305 000a 01       		.uleb128 0x1
@@ -538,7 +538,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 1
  359 0040 00000000 		.4byte	0x0
  360 0044 00000000 		.4byte	0x0
  361              		.section	.debug_info
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 10
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccjr55YN.s 			page 10
 
 
  362 0000 BA010000 		.4byte	0x1ba
@@ -598,7 +598,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 1
  416 0073 03       		.uleb128 0x3
  417 0074 5D000000 		.4byte	.LASF7
  418 0078 04       		.byte	0x4
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 11
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccjr55YN.s 			page 11
 
 
  419 0079 05       		.byte	0x5
@@ -658,7 +658,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 1
  473 00ee 0D       		.uleb128 0xd
  474 00ef A8000000 		.4byte	.LASF12
  475 00f3 01       		.byte	0x1
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 12
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccjr55YN.s 			page 12
 
 
  476 00f4 58       		.byte	0x58
@@ -718,7 +718,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 1
  530 0169 05       		.byte	0x5
  531 016a 03       		.byte	0x3
  532 016b 00000000 		.4byte	krzyzyk2
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 13
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccjr55YN.s 			page 13
 
 
  533 016f 11       		.uleb128 0x11
@@ -778,7 +778,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 1
  587 0010 0E       		.uleb128 0xe
  588 0011 00       		.byte	0x0
  589 0012 00       		.byte	0x0
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 14
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccjr55YN.s 			page 14
 
 
  590 0013 02       		.uleb128 0x2
@@ -838,7 +838,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 1
  644 0049 0E       		.uleb128 0xe
  645 004a 3A       		.uleb128 0x3a
  646 004b 0B       		.uleb128 0xb
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 15
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccjr55YN.s 			page 15
 
 
  647 004c 3B       		.uleb128 0x3b
@@ -898,7 +898,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 1
  701 0082 13       		.uleb128 0x13
  702 0083 00       		.byte	0x0
  703 0084 00       		.byte	0x0
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 16
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccjr55YN.s 			page 16
 
 
  704 0085 0A       		.uleb128 0xa
@@ -958,7 +958,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 1
  758 00bb 13       		.uleb128 0x13
  759 00bc 00       		.byte	0x0
  760 00bd 00       		.byte	0x0
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 17
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccjr55YN.s 			page 17
 
 
  761 00be 0F       		.uleb128 0xf
@@ -1018,7 +1018,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 1
  808 0043 84010000 		.4byte	0x184
  809 0047 656D7074 		.ascii	"empty\000"
  809      7900
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 18
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccjr55YN.s 			page 18
 
 
  810 004d AB010000 		.4byte	0x1ab
@@ -1078,7 +1078,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 1
  844              	.LASF22:
  845 0066 64656C61 		.ascii	"delayInMs\000"
  845      79496E4D 
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 19
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccjr55YN.s 			page 19
 
 
  845      7300
@@ -1138,7 +1138,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 1
  871      7A796B00 
  872              	.LASF20:
  873 00fd 2F637967 		.ascii	"/cygdrive/c/Embedded/eclipse/Demo/2138\000"
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 20
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccjr55YN.s 			page 20
 
 
  873      64726976 
@@ -1146,19 +1146,19 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 1
  873      456D6265 
  873      64646564 
  874              		.ident	"GCC: (GNU) 4.1.1"
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s 			page 21
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccjr55YN.s 			page 21
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 testLedMatrix.c
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s:1      .text:00000000 $t
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s:22     .text:00000000 testLedMatrix
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s:232    .text:000000fc $d
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s:296    .bss:00000000 pattern
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s:254    .rodata:00000000 kolko
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s:266    .rodata:00000008 krzyzyk
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s:278    .rodata:00000010 krzyzyk2
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccAeY86I.s:290    .rodata:00000018 empty
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccjr55YN.s:1      .text:00000000 $t
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccjr55YN.s:22     .text:00000000 testLedMatrix
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccjr55YN.s:232    .text:000000fc $d
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccjr55YN.s:296    .bss:00000000 pattern
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccjr55YN.s:254    .rodata:00000000 kolko
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccjr55YN.s:266    .rodata:00000008 krzyzyk
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccjr55YN.s:278    .rodata:00000010 krzyzyk2
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccjr55YN.s:290    .rodata:00000018 empty
                              .bss:00000000 $d
 
 UNDEFINED SYMBOLS
