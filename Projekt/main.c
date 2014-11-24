@@ -35,6 +35,7 @@ static tU8 pid3;
 static tU8 pid4;
 static tU8 pid5;
 
+int timerCnt = 0;
 
 static void proc1(void* arg);
 static void proc2(void* arg);
@@ -48,7 +49,7 @@ void testLcd(void);
 void testMotor(void);
 void testRGB(void);
 void testI2C(void);
-void testAdc(void);
+void timer(void);
 
 /*****************************************************************************
  *
@@ -59,6 +60,7 @@ void testAdc(void);
 int
 main(void)
 {
+	timerCnt = 0;
   tU8 error;
   tU8 pid;
 
@@ -256,7 +258,7 @@ proc4(void* arg)
 static void
 proc5(void* arg)
 {
-	testAdc();
+	timer();
 }
 
 /*****************************************************************************
