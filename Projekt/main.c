@@ -157,8 +157,8 @@ proc1(void* arg)
     osStartProcess(pid3, &error);
     osCreateProcess(proc4, proc4Stack, PROC4_STACK_SIZE, &pid4, 3, NULL, &error);
     osStartProcess(pid4, &error);
-    osCreateProcess(proc5, proc5Stack, PROC5_STACK_SIZE, &pid5, 3, NULL, &error);
-    osStartProcess(pid5, &error);
+    //osCreateProcess(proc5, proc5Stack, PROC5_STACK_SIZE, &pid5, 3, NULL, &error);
+    //osStartProcess(pid5, &error);
 
 
     //wait for a short while

@@ -118,7 +118,7 @@ void writeInt(int number)
 	char caption[20], tmp[20];
 
 	int divisor = 10, counter = 0;
-	int prevModulo = 0;
+	int prevModulo = -1;
 	int modulo = number % divisor;
 	tmp[counter] = (char)(modulo + '0');
 
@@ -133,10 +133,8 @@ void writeInt(int number)
 		{
 			modulo -= modulo % i;
 		}
-		
 
 		tmp[counter] = (char)((modulo * 10 / divisor) + '0');
-
 	}
 
 	tmp[counter - 1] = '\0';
@@ -176,8 +174,8 @@ testLcd(void)
 {
 	printf("asdasd \n");
   initLCD();
-	lcdBacklight(FALSE);
-  osSleep(10);
+	//lcdBacklight(FALSE);
+  //osSleep(10);
   lcdBacklight(TRUE);
   for(;;)
   {

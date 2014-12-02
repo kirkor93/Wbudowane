@@ -1,4 +1,4 @@
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cc53lOyH.s 			page 1
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGIHYEI.s 			page 1
 
 
    1              		.code	16
@@ -58,7 +58,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cc53lOyH.s 			page 1
   26:testMotor.c   ****    IODIR0   =   3 << BUZZ; //Configure Port0.7 as O/P pin
   26              		.loc 1 26 0
   27 0008 C023     		mov	r3, #192
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cc53lOyH.s 			page 2
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGIHYEI.s 			page 2
 
 
   28 000a 094A     		ldr	r2, .L4+4
@@ -118,7 +118,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cc53lOyH.s 			page 1
   75              	.LECIE0:
   76              	.LSFDE0:
   77 0010 14000000 		.4byte	.LEFDE0-.LASFDE0
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cc53lOyH.s 			page 3
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGIHYEI.s 			page 3
 
 
   78              	.LASFDE0:
@@ -178,7 +178,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cc53lOyH.s 			page 1
  132 0039 07       		.byte	0x7
  133 003a 02       		.uleb128 0x2
  134 003b 93000000 		.4byte	.LASF3
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cc53lOyH.s 			page 4
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGIHYEI.s 			page 4
 
 
  135 003f 01       		.byte	0x1
@@ -238,7 +238,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cc53lOyH.s 			page 1
  189 001d 00       		.byte	0x0
  190 001e 03       		.uleb128 0x3
  191 001f 24       		.uleb128 0x24
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cc53lOyH.s 			page 5
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGIHYEI.s 			page 5
 
 
  192 0020 00       		.byte	0x0
@@ -298,7 +298,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cc53lOyH.s 			page 1
  244              	.LASF0:
  245 0000 756E7369 		.ascii	"unsigned char\000"
  245      676E6564 
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cc53lOyH.s 			page 6
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGIHYEI.s 			page 6
 
 
  245      20636861 
@@ -347,14 +347,14 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cc53lOyH.s 			page 1
  263      65642063 
  263      68617200 
  264              		.ident	"GCC: (GNU) 4.1.1"
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cc53lOyH.s 			page 7
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGIHYEI.s 			page 7
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 testMotor.c
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cc53lOyH.s:1      .text:00000000 $t
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cc53lOyH.s:16     .text:00000000 testMotor
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cc53lOyH.s:55     .text:0000002c $d
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGIHYEI.s:1      .text:00000000 $t
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGIHYEI.s:16     .text:00000000 testMotor
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGIHYEI.s:55     .text:0000002c $d
 
 UNDEFINED SYMBOLS
 osSleep
