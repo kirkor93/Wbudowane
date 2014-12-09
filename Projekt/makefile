@@ -59,7 +59,7 @@ CSRCS   = main.c          \
           testMotor.c     \
           testRGB.c       \
           testI2C.c       \
-          testAdc.c       
+          timer.c       
 
 # List assembler source files here
 ASRCS   = 

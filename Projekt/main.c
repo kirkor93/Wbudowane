@@ -35,6 +35,7 @@ static tU8 pid3;
 static tU8 pid4;
 static tU8 pid5;
 
+int timerCnt = 0;
 
 static void proc1(void* arg);
 static void proc2(void* arg);
@@ -48,7 +49,7 @@ void testLcd(void);
 void testMotor(void);
 void testRGB(void);
 void testI2C(void);
-void testAdc(void);
+void timer(void);
 
 /*****************************************************************************
  *
@@ -59,6 +60,7 @@ void testAdc(void);
 int
 main(void)
 {
+	timerCnt = 0;
   tU8 error;
   tU8 pid;
 
@@ -155,8 +157,8 @@ proc1(void* arg)
     osStartProcess(pid3, &error);
     osCreateProcess(proc4, proc4Stack, PROC4_STACK_SIZE, &pid4, 3, NULL, &error);
     osStartProcess(pid4, &error);
-    osCreateProcess(proc5, proc5Stack, PROC5_STACK_SIZE, &pid5, 3, NULL, &error);
-    osStartProcess(pid5, &error);
+    //osCreateProcess(proc5, proc5Stack, PROC5_STACK_SIZE, &pid5, 3, NULL, &error);
+    //osStartProcess(pid5, &error);
 
 
     //wait for a short while
@@ -239,7 +241,7 @@ proc4(void* arg)
 {
 	for(;;)
 	{
-		testRGB();
+		//testRGB();
 		//testMotor();
 	}
 }
@@ -256,7 +258,7 @@ proc4(void* arg)
 static void
 proc5(void* arg)
 {
-	testAdc();
+	timer();
 }
 
 /*****************************************************************************
