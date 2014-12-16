@@ -19,6 +19,7 @@
 #define LCD_BACKLIGHT 0x40000000  //P0.30
 
 extern int timerCnt;
+extern int lifes;
 
 /*****************************************************************************
  *
@@ -115,6 +116,11 @@ void writeString(char *caption)
 
 void writeInt(int number)
 {
+	if(number == 0)
+	{
+		writeString("0");
+		return ;
+	}
 	char caption[20], tmp[20];
 
 	int divisor = 10, counter = 0;
@@ -219,6 +225,9 @@ testLcd(void)
 	//writeInt(12345);
 	//osSleep(2000);
 	writeInt(timerCnt);
+	writeNewLine();
+	writeString("Liczba zyc: ");
+	writeInt(lifes);
 	osSleep(50);
 	clearLCD();
 	//writeString(":<");

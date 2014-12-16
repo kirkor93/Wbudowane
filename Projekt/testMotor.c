@@ -20,17 +20,37 @@
  *
  ****************************************************************************/
 void
-testMotor(void)
+testMotor(tU8 p)
 {
-	PINSEL0   =   0x00;     //Configure Port0.7 as GPIO
-   IODIR0   =   3 << BUZZ; //Configure Port0.7 as O/P pin
- 
-	while(1)
+	/*tU8  continueTest;
+	tU32 counter = 0;
+	tU8  direction = 0;
+
+  PINSEL0 |= 0x00008000;
+  IODIR0   |=   3 << 7; //Configure Port0.7 as O/P pin
+  IOCLR0   |= 3 << 7;  //set P0.10 low = disable motor
+
+  //PULSE WIDTH MODULATION INIT*********************************************
+  PWM_PR  = 0x00;    // Prescale Register
+  PWM_MCR = 0x02;    // Match Control Register
+  PWM_MR0 = 0x1000;    // TOTAL PERIODTID   T
+  PWM_MR2 = 0x0000;    // HÖG SIGNAL        t
+  PWM_LER = 0x04;    // Latch Enable Register
+  PWM_PCR = 0x5000;  // Prescale Counter Register PWMENA4, PWMENA6
+  PWM_TCR = 0x09;    // Counter Enable och PWM Enable
+  //************************************************************************
+
+  PWM_MR2=p*500;
+  PWM_LER=0x04;*/
+
+	IODIR0  |=   3 << 7;
+
+	if(p == 0)
 	{
-     IOSET0 = 1 << BUZZ;
-     osSleep(1000);
-    IOCLR0 = 1 << BUZZ;
-     osSleep(1000);
+        IOSET0 = 1 << 7;
 	}
-    
+	else
+	{
+        IOCLR0 = 1 << 7;
+	}
 }

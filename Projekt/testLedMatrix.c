@@ -21,6 +21,8 @@
 #define PLL_FACTOR        PLL_MUL
 #define VPBDIV_FACTOR     PBSD
 
+#define BUZZ 7 // buzzer define
+
 #define  SPI_CS   0x00008000  //<= new board, old board = 0x00800000
 
 const tU8 kolko[] = {0x3c,0x42,0x81,0x81,0x81,0x81,0x42,0x3c};
@@ -61,6 +63,7 @@ void feedSeq(void);
 void connectPLL(void);
 
 extern int timerCnt;
+extern int lifes;
 
 void timer(void)
 {
@@ -139,25 +142,14 @@ testLedMatrix(void)
   SPI_SPCR  = 0x60;
   timer();
   IODIR0 |= SPI_CS;
-  PINSEL0 &= 0xfff03fff;  //Enable PWM2 on P0.7, PWM4 on P0.8, and PWM6 on P0.9
-  		  PINSEL0 |= 0x000a8000;  //Enable PWM2 on P0.7, PWM4 on P0.8, and PWM6 on P0.9
+
+  testMotor(0);
 
   srand(123456);
 	for( ; ; )
  // while((IOPIN0 & (1<<14)) )
   {
-
-		  //PULSE WIDTH MODULATION INIT*********************************************
-		  PWM_PR  = 0x00;    // Prescale Register
-		  PWM_MCR = 0x02;    // Match Control Register
-		  PWM_MR0 = 0x1000;    // TOTAL PERIODTID   T
-		  PWM_MR2 = 0x0000;    // HÖG SIGNAL        t
-		  PWM_MR4 = 0x0000;    // HÖG SIGNAL        t
-		  PWM_MR6 = 0x0000;    // HÖG SIGNAL        t
-		  PWM_LER = 0x55;    // Latch Enable Register
-		  PWM_PCR = 0x5400;  // Prescale Counter Register PWMENA2, PWMENA4, PWMENA6
-		  PWM_TCR = 0x09;
-
+		PINSEL0 |= 0x00001500 ;
 		state = 0;
 		int znak = rand()%100;
 	    cntA++;
@@ -190,41 +182,36 @@ testLedMatrix(void)
 	      	pattern[6] = krzyzyk[cntA+6];
 	      	pattern[7] = krzyzyk[cntA+7];
 	    	}
-	
+	    testMotor(1);
+
+	    timerCnt = 0;
+
 	    while(1)
 	    {
-	    if( !(IOPIN0 & (1<<14)) ) // Evaluates to True for a 'LOW' on P0.14
+    		printf("%d\n", timerCnt);
+	    	if(timerCnt > 2000)
+	    	{
+	    		printf("DDDD");
+	    		lifes -= 1;
+	    		break;
+	    	}
+	    	if( !(IOPIN0 & (1<<14)) ) // Evaluates to True for a 'LOW' on P0.14
 	            {
 	                if(pattern[0] == krzyzyk[cntA+0])
 	                {
-	                	state = 2;
+	                	testRGB(0,0,255);
+	                	lifes -= 1;
 	                }
 	                else
 	                {
-	                	state = 1;
+	                	testRGB(0,0,255);
 	                }
-	                	break;
+	                break;
 	            }
 	    }
 
-	    switch(state)
-	        {
-	        	case 0:
-	          PWM_MR4 = 0x0000;
-	          PWM_MR6 = 0x0000;// HÖG SIGNAL
-	          PWM_LER = 0x00;    // Latch Enable Register
-	        	break;
-	        	case 2:
-	          PWM_MR4 = 0x0300;    // HÖG SIGNAL
-	          PWM_LER = 0x10;    // Latch Enable Register
-	        	break;
-	        	case 1:
-	          PWM_MR6 = 0x0300;    // HÖG SIGNAL
-	          PWM_LER = 0x40;    // Latch Enable Register
-	        	break;
-	        	default:
-	        	break;
-	        }
+        testMotor(0);
+
 	
 	//while(timerCnt%100 == 0) ;
 
@@ -238,6 +225,8 @@ testLedMatrix(void)
   	pattern[7] = empty[cntA+7];
 
 	osSleep(100);
+	testRGB(0,0,0);
+
   	//while(timerCnt % 100 == 0) ;
 	}
 }

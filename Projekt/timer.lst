@@ -1,0 +1,29 @@
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccebHRpg.s 			page 1
+
+
+   1              		.code	16
+   2              		.file	"timer.c"
+   3              		.section	.debug_abbrev,"",%progbits
+   4              	.Ldebug_abbrev0:
+   5              		.section	.debug_info,"",%progbits
+   6              	.Ldebug_info0:
+   7              		.section	.debug_line,"",%progbits
+   8              	.Ldebug_line0:
+   9 0000 19000000 		.text
+   9      02001300 
+   9      00000201 
+   9      FB0E0D00 
+   9      01010101 
+  10              	.Ltext0:
+  11              	.Letext0:
+  12              		.section	.debug_abbrev
+  13 0000 00       		.byte	0x0
+  14              		.ident	"GCC: (GNU) 4.1.1"
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccebHRpg.s 			page 2
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 timer.c
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccebHRpg.s:1      .text:00000000 $t
+
+NO UNDEFINED SYMBOLS

@@ -1,4 +1,4 @@
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 1
 
 
    1              		.file	"consol.c"
@@ -58,7 +58,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
   26:consol.c      **** 
   27:consol.c      **** #define UART_DLL_VALUE (unsigned short)((PCLK / (CONSOL_BITRATE * 16.0)) + 0.5)
   28:consol.c      **** 
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 2
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 2
 
 
   29:consol.c      **** #if (CONSOLE_API_SCANF == 1)  //SIMPLE
@@ -118,7 +118,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
   41              	.LVL3:
   42 0020 FEFFFFEB 		bl	memcpy
   43 0024 02508DE2 		add	r5, sp, #2
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 3
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 3
 
 
   44              	.LVL4:
@@ -178,7 +178,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
   87              	.LFB4:
   75:consol.c      **** 
   76:consol.c      **** /*****************************************************************************
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 4
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 4
 
 
   77:consol.c      ****  *
@@ -238,7 +238,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  131:consol.c      ****         outputFnk(ch);
  132:consol.c      ****       break;
  133:consol.c      **** 
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 5
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 5
 
 
  134:consol.c      ****     case 'd':
@@ -298,7 +298,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  188:consol.c      **** void
  189:consol.c      **** consolInit(void)
  190:consol.c      **** {
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 6
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 6
 
 
   88              		.loc 1 190 0
@@ -306,64 +306,65 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
   90              		@ args = 0, pretend = 0, frame = 0
   91              		@ frame_needed = 0, uses_anonymous_args = 0
   92              		@ link register save eliminated.
- 191:consol.c      **** #if (CONSOL_UART == 0)
- 192:consol.c      ****   //enable uart #0 pins in GPIO (P0.0 = TxD0, P0.1 = RxD0)
- 193:consol.c      ****   PINSEL0 = (PINSEL0 & 0xfffffff0) | 0x00000005;
-  93              		.loc 1 193 0
+ 191:consol.c      **** 
+ 192:consol.c      **** #if (CONSOL_UART == 0)
+ 193:consol.c      ****   //enable uart #0 pins in GPIO (P0.0 = TxD0, P0.1 = RxD0)
+ 194:consol.c      ****   PINSEL0 = (PINSEL0 & 0xfffffff0) | 0x00000005;
+  93              		.loc 1 194 0
   94 0084 40009FE5 		ldr	r0, .L15
   95 0088 003090E5 		ldr	r3, [r0, #0]
   96 008c 0F30C3E3 		bic	r3, r3, #15
- 194:consol.c      **** #else
- 195:consol.c      ****   //enable uart #1 pins in GPIO (P0.8 = TxD1, P9.1 = RxD1)
- 196:consol.c      ****   PINSEL0 = (PINSEL0 & 0xfff0ffff) | 0x00050000;
- 197:consol.c      **** #endif
- 198:consol.c      **** 
- 199:consol.c      ****   //initialize bitrate (by first enable DL registers, DLAB-bit = 1)
- 200:consol.c      ****   UART_LCR = 0x80;
-  97              		.loc 1 200 0
+ 195:consol.c      **** #else
+ 196:consol.c      ****   //enable uart #1 pins in GPIO (P0.8 = TxD1, P9.1 = RxD1)
+ 197:consol.c      ****   PINSEL0 = (PINSEL0 & 0xfff0ffff) | 0x00050000;
+ 198:consol.c      **** #endif
+ 199:consol.c      **** 
+ 200:consol.c      ****   //initialize bitrate (by first enable DL registers, DLAB-bit = 1)
+ 201:consol.c      ****   UART_LCR = 0x80;
+  97              		.loc 1 201 0
   98 0090 38209FE5 		ldr	r2, .L15+4
-  99              		.loc 1 193 0
+  99              		.loc 1 194 0
  100 0094 053083E3 		orr	r3, r3, #5
  101 0098 003080E5 		str	r3, [r0, #0]
- 102              		.loc 1 200 0
+ 102              		.loc 1 201 0
  103 009c 8030A0E3 		mov	r3, #128
  104 00a0 0C3082E5 		str	r3, [r2, #12]
- 201:consol.c      ****   UART_DLL = (unsigned char)(UART_DLL_VALUE & 0x00ff);
- 105              		.loc 1 201 0
+ 202:consol.c      ****   UART_DLL = (unsigned char)(UART_DLL_VALUE & 0x00ff);
+ 105              		.loc 1 202 0
  106 00a4 6230A0E3 		mov	r3, #98
  107 00a8 003082E5 		str	r3, [r2, #0]
- 202:consol.c      ****   UART_DLM = (unsigned char)(UART_DLL_VALUE>>8);
- 108              		.loc 1 202 0
+ 203:consol.c      ****   UART_DLM = (unsigned char)(UART_DLL_VALUE>>8);
+ 108              		.loc 1 203 0
  109 00ac 0010A0E3 		mov	r1, #0
- 203:consol.c      ****   UART_LCR = 0x00;
- 204:consol.c      **** 
- 205:consol.c      ****   //initialize LCR: 8N1
- 206:consol.c      ****   UART_LCR = 0x03;
- 110              		.loc 1 206 0
+ 204:consol.c      ****   UART_LCR = 0x00;
+ 205:consol.c      **** 
+ 206:consol.c      ****   //initialize LCR: 8N1
+ 207:consol.c      ****   UART_LCR = 0x03;
+ 110              		.loc 1 207 0
  111 00b0 0330A0E3 		mov	r3, #3
- 112              		.loc 1 202 0
+ 112              		.loc 1 203 0
  113 00b4 041082E5 		str	r1, [r2, #4]
  114              		.loc 1 190 0
  115              		@ lr needed for prologue
- 116              		.loc 1 203 0
+ 116              		.loc 1 204 0
  117 00b8 0C1082E5 		str	r1, [r2, #12]
- 118              		.loc 1 206 0
+ 118              		.loc 1 207 0
  119 00bc 0C3082E5 		str	r3, [r2, #12]
- 207:consol.c      **** 
- 208:consol.c      ****   //reset FIFO
- 209:consol.c      ****   UART_FCR = 0x00;
- 120              		.loc 1 209 0
+ 208:consol.c      **** 
+ 209:consol.c      ****   //reset FIFO
+ 210:consol.c      ****   UART_FCR = 0x00;
+ 120              		.loc 1 210 0
  121 00c0 081082E5 		str	r1, [r2, #8]
- 210:consol.c      **** 
- 211:consol.c      ****   //clear interrupt bits
- 212:consol.c      ****   UART_IER = 0x00;
- 122              		.loc 1 212 0
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 7
+ 211:consol.c      **** 
+ 212:consol.c      ****   //clear interrupt bits
+ 213:consol.c      ****   UART_IER = 0x00;
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 7
 
 
+ 122              		.loc 1 213 0
  123 00c4 041082E5 		str	r1, [r2, #4]
- 213:consol.c      **** }
- 124              		.loc 1 213 0
+ 214:consol.c      **** }
+ 124              		.loc 1 214 0
  125 00c8 1EFF2FE1 		bx	lr
  126              	.L16:
  127              		.align	2
@@ -377,21 +378,21 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  135              		.type	consolSendChar, %function
  136              	consolSendChar:
  137              	.LFB5:
- 214:consol.c      **** 
- 215:consol.c      **** /*****************************************************************************
- 216:consol.c      ****  *
- 217:consol.c      ****  * Description:
- 218:consol.c      ****  *    Blocking consol output routine, i.e., the routine waits until the uart 
- 219:consol.c      ****  *    buffer is free and then sends the character. 
- 220:consol.c      ****  *
- 221:consol.c      ****  * Params:
- 222:consol.c      ****  *    [in] charToSend - The character to print (to the consol) 
- 223:consol.c      ****  *
- 224:consol.c      ****  ****************************************************************************/
- 225:consol.c      **** void
- 226:consol.c      **** consolSendChar(char charToSend)
- 227:consol.c      **** {
- 138              		.loc 1 227 0
+ 215:consol.c      **** 
+ 216:consol.c      **** /*****************************************************************************
+ 217:consol.c      ****  *
+ 218:consol.c      ****  * Description:
+ 219:consol.c      ****  *    Blocking consol output routine, i.e., the routine waits until the uart 
+ 220:consol.c      ****  *    buffer is free and then sends the character. 
+ 221:consol.c      ****  *
+ 222:consol.c      ****  * Params:
+ 223:consol.c      ****  *    [in] charToSend - The character to print (to the consol) 
+ 224:consol.c      ****  *
+ 225:consol.c      ****  ****************************************************************************/
+ 226:consol.c      **** void
+ 227:consol.c      **** consolSendChar(char charToSend)
+ 228:consol.c      **** {
+ 138              		.loc 1 228 0
  139              		@ Function supports interworking.
  140              		@ args = 0, pretend = 0, frame = 0
  141              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -400,27 +401,27 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  144              		@ lr needed for prologue
  145 00d4 FF0000E2 		and	r0, r0, #255
  146              	.L19:
- 228:consol.c      ****   //Wait until THR is empty
- 229:consol.c      ****   while(!(UART_LSR & 0x20))
- 147              		.loc 1 229 0
+ 229:consol.c      ****   //Wait until THR is empty
+ 230:consol.c      ****   while(!(UART_LSR & 0x20))
+ 147              		.loc 1 230 0
  148 00d8 10209FE5 		ldr	r2, .L24
  149 00dc 143092E5 		ldr	r3, [r2, #20]
  150 00e0 200013E3 		tst	r3, #32
  151 00e4 FBFFFF0A 		beq	.L19
- 230:consol.c      ****     ;
- 231:consol.c      ****   UART_THR = charToSend;
- 152              		.loc 1 231 0
+ 231:consol.c      ****     ;
+ 232:consol.c      ****   UART_THR = charToSend;
+ 152              		.loc 1 232 0
  153 00e8 000082E5 		str	r0, [r2, #0]
- 232:consol.c      **** }
- 154              		.loc 1 232 0
+ 233:consol.c      **** }
+ 154              		.loc 1 233 0
  155 00ec 1EFF2FE1 		bx	lr
  156              	.L25:
  157              		.align	2
  158              	.L24:
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 8
+
+
  159 00f0 00C000E0 		.word	-536821760
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 8
-
-
  160              	.LFE5:
  161              		.size	consolSendChar, .-consolSendChar
  162              		.align	2
@@ -428,42 +429,42 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  164              		.type	consolSendCh, %function
  165              	consolSendCh:
  166              	.LFB6:
- 233:consol.c      **** 
- 234:consol.c      **** /*****************************************************************************
- 235:consol.c      ****  *
- 236:consol.c      ****  * Description:
- 237:consol.c      ****  *    Consol output routine that adds extra line feeds at line breaks. 
- 238:consol.c      ****  *
- 239:consol.c      ****  * Params:
- 240:consol.c      ****  *    [in] charToSend - The character to print (to the consol) 
- 241:consol.c      ****  *
- 242:consol.c      ****  ****************************************************************************/
- 243:consol.c      **** void
- 244:consol.c      **** consolSendCh(char charToSend)
- 245:consol.c      **** {
- 167              		.loc 1 245 0
+ 234:consol.c      **** 
+ 235:consol.c      **** /*****************************************************************************
+ 236:consol.c      ****  *
+ 237:consol.c      ****  * Description:
+ 238:consol.c      ****  *    Consol output routine that adds extra line feeds at line breaks. 
+ 239:consol.c      ****  *
+ 240:consol.c      ****  * Params:
+ 241:consol.c      ****  *    [in] charToSend - The character to print (to the consol) 
+ 242:consol.c      ****  *
+ 243:consol.c      ****  ****************************************************************************/
+ 244:consol.c      **** void
+ 245:consol.c      **** consolSendCh(char charToSend)
+ 246:consol.c      **** {
+ 167              		.loc 1 246 0
  168              		@ Function supports interworking.
  169              		@ args = 0, pretend = 0, frame = 0
  170              		@ frame_needed = 0, uses_anonymous_args = 0
  171              		@ link register save eliminated.
  172              	.LVL7:
  173 00f4 FF0000E2 		and	r0, r0, #255
- 246:consol.c      ****   if(charToSend == '\n')
- 174              		.loc 1 246 0
+ 247:consol.c      ****   if(charToSend == '\n')
+ 174              		.loc 1 247 0
  175 00f8 0A0050E3 		cmp	r0, #10
- 176              		.loc 1 245 0
+ 176              		.loc 1 246 0
  177              		@ lr needed for prologue
- 178              		.loc 1 246 0
+ 178              		.loc 1 247 0
  179 00fc 0500001A 		bne	.L34
  180              	.L33:
  181              	.LBB8:
  182              	.LBB9:
- 183              		.loc 1 229 0
+ 183              		.loc 1 230 0
  184 0100 2C209FE5 		ldr	r2, .L39
  185 0104 143092E5 		ldr	r3, [r2, #20]
  186 0108 200013E3 		tst	r3, #32
  187 010c FBFFFF0A 		beq	.L33
- 188              		.loc 1 231 0
+ 188              		.loc 1 232 0
  189 0110 0D30A0E3 		mov	r3, #13
  190 0114 003082E5 		str	r3, [r2, #0]
  191              	.L34:
@@ -471,24 +472,24 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  193              	.LBE8:
  194              	.LBB10:
  195              	.LBB11:
- 196              		.loc 1 229 0
+ 196              		.loc 1 230 0
  197 0118 14209FE5 		ldr	r2, .L39
  198 011c 143092E5 		ldr	r3, [r2, #20]
  199 0120 200013E3 		tst	r3, #32
  200 0124 FBFFFF0A 		beq	.L34
- 201              		.loc 1 231 0
+ 201              		.loc 1 232 0
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 9
+
+
  202 0128 FF3000E2 		and	r3, r0, #255
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 9
-
-
  203 012c 003082E5 		str	r3, [r2, #0]
  204              	.LBE11:
  205              	.LBE10:
- 247:consol.c      ****     consolSendChar('\r');
- 248:consol.c      **** 
- 249:consol.c      ****   consolSendChar(charToSend);
- 250:consol.c      **** }
- 206              		.loc 1 250 0
+ 248:consol.c      ****     consolSendChar('\r');
+ 249:consol.c      **** 
+ 250:consol.c      ****   consolSendChar(charToSend);
+ 251:consol.c      **** }
+ 206              		.loc 1 251 0
  207 0130 1EFF2FE1 		bx	lr
  208              	.L40:
  209              		.align	2
@@ -501,50 +502,50 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  216              		.type	consolSendString, %function
  217              	consolSendString:
  218              	.LFB7:
- 251:consol.c      **** 
- 252:consol.c      **** /*****************************************************************************
- 253:consol.c      ****  *
- 254:consol.c      ****  * Description:
- 255:consol.c      ****  *    Print string to consol. 
- 256:consol.c      ****  *
- 257:consol.c      ****  * Params:
- 258:consol.c      ****  *    [in] pString - Pointer to string to be printed 
- 259:consol.c      ****  *
- 260:consol.c      ****  ****************************************************************************/
- 261:consol.c      **** void
- 262:consol.c      **** consolSendString(char *pString)
- 263:consol.c      **** {
- 219              		.loc 1 263 0
+ 252:consol.c      **** 
+ 253:consol.c      **** /*****************************************************************************
+ 254:consol.c      ****  *
+ 255:consol.c      ****  * Description:
+ 256:consol.c      ****  *    Print string to consol. 
+ 257:consol.c      ****  *
+ 258:consol.c      ****  * Params:
+ 259:consol.c      ****  *    [in] pString - Pointer to string to be printed 
+ 260:consol.c      ****  *
+ 261:consol.c      ****  ****************************************************************************/
+ 262:consol.c      **** void
+ 263:consol.c      **** consolSendString(char *pString)
+ 264:consol.c      **** {
+ 219              		.loc 1 264 0
  220              		@ Function supports interworking.
  221              		@ args = 0, pretend = 0, frame = 0
  222              		@ frame_needed = 0, uses_anonymous_args = 0
  223              	.LVL8:
  224 0138 10402DE9 		stmfd	sp!, {r4, lr}
  225              	.LCFI2:
- 226              		.loc 1 263 0
+ 226              		.loc 1 264 0
  227 013c 0040A0E1 		mov	r4, r0
  228 0140 000000EA 		b	.L42
  229              	.LVL9:
  230              	.L43:
- 264:consol.c      ****   while(*pString)
- 265:consol.c      ****     consolSendCh(*pString++);
- 231              		.loc 1 265 0
+ 265:consol.c      ****   while(*pString)
+ 266:consol.c      ****     consolSendCh(*pString++);
+ 231              		.loc 1 266 0
  232 0144 FEFFFFEB 		bl	consolSendCh
  233              	.LVL10:
  234              	.L42:
- 235              		.loc 1 264 0
+ 235              		.loc 1 265 0
  236 0148 0030D4E5 		ldrb	r3, [r4, #0]	@ zero_extendqisi2
  237 014c 000053E3 		cmp	r3, #0
- 238              		.loc 1 265 0
+ 238              		.loc 1 266 0
  239 0150 0300A0E1 		mov	r0, r3
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 10
+
+
  240 0154 014084E2 		add	r4, r4, #1
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 10
-
-
- 241              		.loc 1 264 0
+ 241              		.loc 1 265 0
  242 0158 F9FFFF1A 		bne	.L43
- 266:consol.c      **** }
- 243              		.loc 1 266 0
+ 267:consol.c      **** }
+ 243              		.loc 1 267 0
  244 015c 1040BDE8 		ldmfd	sp!, {r4, lr}
  245 0160 1EFF2FE1 		bx	lr
  246              	.LFE7:
@@ -554,31 +555,31 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  250              		.type	consolSendNumber, %function
  251              	consolSendNumber:
  252              	.LFB8:
- 267:consol.c      **** 
- 268:consol.c      **** /*****************************************************************************
- 269:consol.c      ****  *
- 270:consol.c      ****  * Description:
- 271:consol.c      ****  *    Routine for printing integer numbers in various formats. The number is 
- 272:consol.c      ****  *    printed in the specified 'base' using exactly 'noDigits', using +/- if 
- 273:consol.c      ****  *    signed flag 'sign' is TRUE, and using the character specified in 'pad' 
- 274:consol.c      ****  *    to pad extra characters. 
- 275:consol.c      ****  *
- 276:consol.c      ****  * Params:
- 277:consol.c      ****  *    [in] base     - Base to print number in (2-16) 
- 278:consol.c      ****  *    [in] noDigits - Number of digits to print (max 32) 
- 279:consol.c      ****  *    [in] sign     - Flag if sign is to be used (TRUE), or not (FALSE) 
- 280:consol.c      ****  *    [in] pad      - Character to pad any unused positions 
- 281:consol.c      ****  *    [in] number   - Signed number to print 
- 282:consol.c      ****  *
- 283:consol.c      ****  ****************************************************************************/
- 284:consol.c      **** void
- 285:consol.c      **** consolSendNumber(unsigned char base,
- 286:consol.c      ****                  unsigned char noDigits,
- 287:consol.c      ****                  unsigned char sign,
- 288:consol.c      ****                  char          pad,
- 289:consol.c      ****                  int           number)
- 290:consol.c      **** {
- 253              		.loc 1 290 0
+ 268:consol.c      **** 
+ 269:consol.c      **** /*****************************************************************************
+ 270:consol.c      ****  *
+ 271:consol.c      ****  * Description:
+ 272:consol.c      ****  *    Routine for printing integer numbers in various formats. The number is 
+ 273:consol.c      ****  *    printed in the specified 'base' using exactly 'noDigits', using +/- if 
+ 274:consol.c      ****  *    signed flag 'sign' is TRUE, and using the character specified in 'pad' 
+ 275:consol.c      ****  *    to pad extra characters. 
+ 276:consol.c      ****  *
+ 277:consol.c      ****  * Params:
+ 278:consol.c      ****  *    [in] base     - Base to print number in (2-16) 
+ 279:consol.c      ****  *    [in] noDigits - Number of digits to print (max 32) 
+ 280:consol.c      ****  *    [in] sign     - Flag if sign is to be used (TRUE), or not (FALSE) 
+ 281:consol.c      ****  *    [in] pad      - Character to pad any unused positions 
+ 282:consol.c      ****  *    [in] number   - Signed number to print 
+ 283:consol.c      ****  *
+ 284:consol.c      ****  ****************************************************************************/
+ 285:consol.c      **** void
+ 286:consol.c      **** consolSendNumber(unsigned char base,
+ 287:consol.c      ****                  unsigned char noDigits,
+ 288:consol.c      ****                  unsigned char sign,
+ 289:consol.c      ****                  char          pad,
+ 290:consol.c      ****                  int           number)
+ 291:consol.c      **** {
+ 253              		.loc 1 291 0
  254              		@ Function supports interworking.
  255              		@ args = 4, pretend = 0, frame = 32
  256              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -587,182 +588,182 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  259              	.LCFI3:
  260 0168 20D04DE2 		sub	sp, sp, #32
  261              	.LCFI4:
- 262              		.loc 1 290 0
+ 262              		.loc 1 291 0
  263 016c 44809DE5 		ldr	r8, [sp, #68]
- 291:consol.c      ****   static char    hexChars[16] = "0123456789ABCDEF";
- 292:consol.c      ****   char          *pBuf;
- 293:consol.c      ****   char           buf[32];
- 294:consol.c      ****   unsigned int   numberAbs;
- 295:consol.c      ****   unsigned char  count;
- 296:consol.c      **** 
- 297:consol.c      ****   // prepare negative number
- 298:consol.c      ****   if(sign && (number < 0))
- 264              		.loc 1 298 0
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 11
+ 292:consol.c      ****   static char    hexChars[16] = "0123456789ABCDEF";
+ 293:consol.c      ****   char          *pBuf;
+ 294:consol.c      ****   char           buf[32];
+ 295:consol.c      ****   unsigned int   numberAbs;
+ 296:consol.c      ****   unsigned char  count;
+ 297:consol.c      **** 
+ 298:consol.c      ****   // prepare negative number
+ 299:consol.c      ****   if(sign && (number < 0))
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 11
 
 
+ 264              		.loc 1 299 0
  265 0170 FF2012E2 		ands	r2, r2, #255
  266 0174 00A0A003 		moveq	sl, #0
  267 0178 01A0A013 		movne	sl, #1
  268 017c A89FA0E1 		mov	r9, r8, lsr #31
  269 0180 09001AE1 		tst	sl, r9
- 299:consol.c      ****     numberAbs = -number;
- 270              		.loc 1 299 0
+ 300:consol.c      ****     numberAbs = -number;
+ 270              		.loc 1 300 0
  271 0184 00406812 		rsbne	r4, r8, #0
  272              	.LVL12:
- 300:consol.c      ****   else
- 301:consol.c      ****     numberAbs = number;
- 273              		.loc 1 301 0
+ 301:consol.c      ****   else
+ 302:consol.c      ****     numberAbs = number;
+ 273              		.loc 1 302 0
  274 0188 0840A001 		moveq	r4, r8
- 275              		.loc 1 290 0
+ 275              		.loc 1 291 0
  276 018c FF7000E2 		and	r7, r0, #255
  277 0190 FF1001E2 		and	r1, r1, #255
- 302:consol.c      **** 
- 303:consol.c      ****   // setup little string buffer
- 304:consol.c      ****   count = (noDigits - 1) - (sign ? 1 : 0);
- 278              		.loc 1 304 0
+ 303:consol.c      **** 
+ 304:consol.c      ****   // setup little string buffer
+ 305:consol.c      ****   count = (noDigits - 1) - (sign ? 1 : 0);
+ 278              		.loc 1 305 0
  279 0194 000052E3 		cmp	r2, #0
  280 0198 0120A001 		moveq	r2, r1
  281 019c 01204112 		subne	r2, r1, #1
  282              	.LVL13:
- 305:consol.c      ****   pBuf = buf + sizeof(buf);
- 306:consol.c      ****   *--pBuf = '\0';
- 307:consol.c      **** 
- 308:consol.c      ****   // force calculation of first digit
- 309:consol.c      ****   // (to prevent zero from not printing at all!!!)
- 310:consol.c      ****   *--pBuf = hexChars[(numberAbs % base)];
- 283              		.loc 1 310 0
+ 306:consol.c      ****   pBuf = buf + sizeof(buf);
+ 307:consol.c      ****   *--pBuf = '\0';
+ 308:consol.c      **** 
+ 309:consol.c      ****   // force calculation of first digit
+ 310:consol.c      ****   // (to prevent zero from not printing at all!!!)
+ 311:consol.c      ****   *--pBuf = hexChars[(numberAbs % base)];
+ 283              		.loc 1 311 0
  284 01a0 0400A0E1 		mov	r0, r4
  285              	.LVL14:
  286 01a4 0710A0E1 		mov	r1, r7
  287              	.LVL15:
- 288              		.loc 1 290 0
+ 288              		.loc 1 291 0
  289 01a8 FFB003E2 		and	fp, r3, #255
- 290              		.loc 1 306 0
+ 290              		.loc 1 307 0
  291 01ac 0030A0E3 		mov	r3, #0
  292              	.LVL16:
  293 01b0 1F30CDE5 		strb	r3, [sp, #31]
- 294              		.loc 1 304 0
+ 294              		.loc 1 305 0
  295 01b4 FF6002E2 		and	r6, r2, #255
- 296              		.loc 1 310 0
+ 296              		.loc 1 311 0
  297 01b8 FEFFFFEB 		bl	__umodsi3
  298 01bc B4309FE5 		ldr	r3, .L64
  299 01c0 0030D3E7 		ldrb	r3, [r3, r0]	@ zero_extendqisi2
- 311:consol.c      ****   numberAbs /= base;
- 300              		.loc 1 311 0
+ 312:consol.c      ****   numberAbs /= base;
+ 300              		.loc 1 312 0
  301 01c4 0710A0E1 		mov	r1, r7
  302 01c8 0400A0E1 		mov	r0, r4
- 303              		.loc 1 310 0
+ 303              		.loc 1 311 0
  304 01cc 1E30CDE5 		strb	r3, [sp, #30]
- 305              		.loc 1 311 0
+ 305              		.loc 1 312 0
  306 01d0 FEFFFFEB 		bl	__udivsi3
  307 01d4 1E408DE2 		add	r4, sp, #30
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 12
+
+
  308              	.LVL17:
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 12
-
-
  309 01d8 0050A0E1 		mov	r5, r0
  310              	.LVL18:
  311 01dc 0F0000EA 		b	.L50
  312              	.LVL19:
  313              	.L51:
- 312:consol.c      **** 
- 313:consol.c      ****   // calculate remaining digits
- 314:consol.c      ****   while(count--)
- 315:consol.c      ****   {
- 316:consol.c      ****     if(numberAbs != 0)
- 314              		.loc 1 316 0
+ 313:consol.c      **** 
+ 314:consol.c      ****   // calculate remaining digits
+ 315:consol.c      ****   while(count--)
+ 316:consol.c      ****   {
+ 317:consol.c      ****     if(numberAbs != 0)
+ 314              		.loc 1 317 0
  315 01e0 000055E3 		cmp	r5, #0
  316 01e4 013044E2 		sub	r3, r4, #1
- 317:consol.c      ****     {
- 318:consol.c      ****       //calculate next digit
- 319:consol.c      ****       *--pBuf = hexChars[(numberAbs % base)];
- 317              		.loc 1 319 0
+ 318:consol.c      ****     {
+ 319:consol.c      ****       //calculate next digit
+ 320:consol.c      ****       *--pBuf = hexChars[(numberAbs % base)];
+ 317              		.loc 1 320 0
  318 01e8 0340A0E1 		mov	r4, r3
- 320:consol.c      ****       numberAbs /= base;
- 321:consol.c      ****     }
- 322:consol.c      ****     else
- 323:consol.c      ****       // no more digits left, pad out to desired length
- 324:consol.c      ****       *--pBuf = pad;
- 319              		.loc 1 324 0
+ 321:consol.c      ****       numberAbs /= base;
+ 322:consol.c      ****     }
+ 323:consol.c      ****     else
+ 324:consol.c      ****       // no more digits left, pad out to desired length
+ 325:consol.c      ****       *--pBuf = pad;
+ 319              		.loc 1 325 0
  320 01ec 0340A001 		moveq	r4, r3
  321 01f0 00B0C405 		streqb	fp, [r4, #0]
- 322              		.loc 1 316 0
+ 322              		.loc 1 317 0
  323 01f4 0700000A 		beq	.L54
  324              	.LVL20:
- 325              		.loc 1 319 0
+ 325              		.loc 1 320 0
  326 01f8 FEFFFFEB 		bl	__umodsi3
  327 01fc 74309FE5 		ldr	r3, .L64
  328 0200 0030D3E7 		ldrb	r3, [r3, r0]	@ zero_extendqisi2
- 329              		.loc 1 320 0
+ 329              		.loc 1 321 0
  330 0204 0710A0E1 		mov	r1, r7
  331 0208 0500A0E1 		mov	r0, r5
- 332              		.loc 1 319 0
+ 332              		.loc 1 320 0
  333 020c 0030C4E5 		strb	r3, [r4, #0]
- 334              		.loc 1 320 0
+ 334              		.loc 1 321 0
  335 0210 FEFFFFEB 		bl	__udivsi3
  336 0214 0050A0E1 		mov	r5, r0
  337              	.LVL21:
  338              	.L54:
- 339              		.loc 1 324 0
+ 339              		.loc 1 325 0
  340 0218 013046E2 		sub	r3, r6, #1
  341 021c FF6003E2 		and	r6, r3, #255
  342              	.L50:
- 343              		.loc 1 314 0
+ 343              		.loc 1 315 0
  344 0220 010056E3 		cmp	r6, #1
- 345              		.loc 1 319 0
+ 345              		.loc 1 320 0
  346 0224 0500A0E1 		mov	r0, r5
  347 0228 0710A0E1 		mov	r1, r7
- 348              		.loc 1 314 0
+ 348              		.loc 1 315 0
  349 022c EBFFFF1A 		bne	.L51
  350              	.LVL22:
- 325:consol.c      ****   }
- 326:consol.c      **** 
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 13
+ 326:consol.c      ****   }
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 13
 
 
- 327:consol.c      ****   // apply signed notation if requested
- 328:consol.c      ****   if(sign)
- 351              		.loc 1 328 0
+ 327:consol.c      **** 
+ 328:consol.c      ****   // apply signed notation if requested
+ 329:consol.c      ****   if(sign)
+ 351              		.loc 1 329 0
  352 0230 00005AE3 		cmp	sl, #0
  353 0234 0A00000A 		beq	.L56
- 329:consol.c      ****   {
- 330:consol.c      ****     if(number < 0)
- 354              		.loc 1 330 0
+ 330:consol.c      ****   {
+ 331:consol.c      ****     if(number < 0)
+ 354              		.loc 1 331 0
  355 0238 000059E3 		cmp	r9, #0
- 331:consol.c      ****       *--pBuf = '-';
- 356              		.loc 1 331 0
+ 332:consol.c      ****       *--pBuf = '-';
+ 356              		.loc 1 332 0
  357 023c 2D30A013 		movne	r3, #45
  358 0240 01306415 		strneb	r3, [r4, #-1]!
- 359              		.loc 1 330 0
+ 359              		.loc 1 331 0
  360 0244 0600001A 		bne	.L56
  361 0248 013044E2 		sub	r3, r4, #1
- 332:consol.c      ****     else if(number > 0)
- 362              		.loc 1 332 0
+ 333:consol.c      ****     else if(number > 0)
+ 362              		.loc 1 333 0
  363 024c 000058E3 		cmp	r8, #0
- 333:consol.c      ****        *--pBuf = '+';
- 364              		.loc 1 333 0
+ 334:consol.c      ****        *--pBuf = '+';
+ 364              		.loc 1 334 0
  365 0250 0340A011 		movne	r4, r3
- 334:consol.c      ****     else
- 335:consol.c      ****        *--pBuf = ' ';
- 366              		.loc 1 335 0
+ 335:consol.c      ****     else
+ 336:consol.c      ****        *--pBuf = ' ';
+ 366              		.loc 1 336 0
  367 0254 0340A001 		moveq	r4, r3
- 368              		.loc 1 333 0
+ 368              		.loc 1 334 0
  369 0258 2B30A013 		movne	r3, #43
- 370              		.loc 1 335 0
+ 370              		.loc 1 336 0
  371 025c 2030A003 		moveq	r3, #32
  372 0260 0030C4E5 		strb	r3, [r4, #0]
  373              	.L56:
- 336:consol.c      ****   }
- 337:consol.c      **** 
- 338:consol.c      ****   // print the string right-justified
- 339:consol.c      ****   consolSendString(pBuf);
- 374              		.loc 1 339 0
+ 337:consol.c      ****   }
+ 338:consol.c      **** 
+ 339:consol.c      ****   // print the string right-justified
+ 340:consol.c      ****   consolSendString(pBuf);
+ 374              		.loc 1 340 0
  375 0264 0400A0E1 		mov	r0, r4
  376              	.LVL23:
  377 0268 FEFFFFEB 		bl	consolSendString
- 340:consol.c      **** }
- 378              		.loc 1 340 0
+ 341:consol.c      **** }
+ 378              		.loc 1 341 0
  379 026c 20D08DE2 		add	sp, sp, #32
  380 0270 F04FBDE8 		ldmfd	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
  381 0274 1EFF2FE1 		bx	lr
@@ -777,71 +778,71 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  390              		.type	consolGetCh, %function
  391              	consolGetCh:
  392              	.LFB10:
- 341:consol.c      **** 
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 14
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 14
 
 
- 342:consol.c      **** #if (CONSOLE_API_PRINTF == 1)  //OWN_PRINTF
- 343:consol.c      **** /*****************************************************************************
- 344:consol.c      ****  *
- 345:consol.c      ****  * Description:
- 346:consol.c      ****  *    Simple implementation of printf 
- 347:consol.c      ****  *
- 348:consol.c      ****  * Params:
- 349:consol.c      ****  *    [in] fmt - Format string that specifies what to be printed 
- 350:consol.c      ****  *    [in] ... - Variable number of parameters to match format string 
- 351:consol.c      ****  *
- 352:consol.c      ****  ****************************************************************************/
- 353:consol.c      **** void
- 354:consol.c      **** simplePrintf(const char * fmt,
- 355:consol.c      ****              ...          )
- 356:consol.c      **** {
- 357:consol.c      **** 	va_list ap;
- 358:consol.c      **** 
- 359:consol.c      **** 	va_start(ap, fmt);
- 360:consol.c      **** 	simplePrint(consolSendCh, fmt, ap);
- 361:consol.c      **** 	va_end(ap);
- 362:consol.c      **** }
- 363:consol.c      **** #endif
- 364:consol.c      **** 
+ 342:consol.c      **** 
+ 343:consol.c      **** #if (CONSOLE_API_PRINTF == 1)  //OWN_PRINTF
+ 344:consol.c      **** /*****************************************************************************
+ 345:consol.c      ****  *
+ 346:consol.c      ****  * Description:
+ 347:consol.c      ****  *    Simple implementation of printf 
+ 348:consol.c      ****  *
+ 349:consol.c      ****  * Params:
+ 350:consol.c      ****  *    [in] fmt - Format string that specifies what to be printed 
+ 351:consol.c      ****  *    [in] ... - Variable number of parameters to match format string 
+ 352:consol.c      ****  *
+ 353:consol.c      ****  ****************************************************************************/
+ 354:consol.c      **** void
+ 355:consol.c      **** simplePrintf(const char * fmt,
+ 356:consol.c      ****              ...          )
+ 357:consol.c      **** {
+ 358:consol.c      **** 	va_list ap;
+ 359:consol.c      **** 
+ 360:consol.c      **** 	va_start(ap, fmt);
+ 361:consol.c      **** 	simplePrint(consolSendCh, fmt, ap);
+ 362:consol.c      **** 	va_end(ap);
+ 363:consol.c      **** }
+ 364:consol.c      **** #endif
  365:consol.c      **** 
- 366:consol.c      **** #if (CONSOLE_API_SCANF == 1)  //SIMPLE
- 367:consol.c      **** 
- 368:consol.c      **** /*****************************************************************************
- 369:consol.c      ****  *
- 370:consol.c      ****  * Description:
- 371:consol.c      ****  *    Wait (blocking call) for a character to be received. 
- 372:consol.c      ****  *
- 373:consol.c      ****  * Returns:
- 374:consol.c      ****  *    char - Received character
- 375:consol.c      ****  *
- 376:consol.c      ****  ****************************************************************************/
- 377:consol.c      **** char
- 378:consol.c      **** consolGetCh(void)
- 379:consol.c      **** {
- 393              		.loc 1 379 0
+ 366:consol.c      **** 
+ 367:consol.c      **** #if (CONSOLE_API_SCANF == 1)  //SIMPLE
+ 368:consol.c      **** 
+ 369:consol.c      **** /*****************************************************************************
+ 370:consol.c      ****  *
+ 371:consol.c      ****  * Description:
+ 372:consol.c      ****  *    Wait (blocking call) for a character to be received. 
+ 373:consol.c      ****  *
+ 374:consol.c      ****  * Returns:
+ 375:consol.c      ****  *    char - Received character
+ 376:consol.c      ****  *
+ 377:consol.c      ****  ****************************************************************************/
+ 378:consol.c      **** char
+ 379:consol.c      **** consolGetCh(void)
+ 380:consol.c      **** {
+ 393              		.loc 1 380 0
  394              		@ Function supports interworking.
  395              		@ args = 0, pretend = 0, frame = 0
  396              		@ frame_needed = 0, uses_anonymous_args = 0
  397              		@ link register save eliminated.
  398              		@ lr needed for prologue
  399              	.L68:
- 380:consol.c      ****   while(!(UART_LSR & (0x01<<0)))
- 400              		.loc 1 380 0
+ 381:consol.c      ****   while(!(UART_LSR & (0x01<<0)))
+ 400              		.loc 1 381 0
  401 027c 14209FE5 		ldr	r2, .L73
  402 0280 143092E5 		ldr	r3, [r2, #20]
  403 0284 010013E3 		tst	r3, #1
  404 0288 FBFFFF0A 		beq	.L68
- 381:consol.c      ****     ;
- 382:consol.c      ****   return UART_RBR;
- 405              		.loc 1 382 0
+ 382:consol.c      ****     ;
+ 383:consol.c      ****   return UART_RBR;
+ 405              		.loc 1 383 0
  406 028c 000092E5 		ldr	r0, [r2, #0]
  407 0290 FF0000E2 		and	r0, r0, #255
- 383:consol.c      **** }
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 15
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 15
 
 
- 408              		.loc 1 383 0
+ 384:consol.c      **** }
+ 408              		.loc 1 384 0
  409 0294 1EFF2FE1 		bx	lr
  410              	.L74:
  411              		.align	2
@@ -854,53 +855,53 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  418              		.type	consolGetChar, %function
  419              	consolGetChar:
  420              	.LFB11:
- 384:consol.c      **** 
- 385:consol.c      **** /*****************************************************************************
- 386:consol.c      ****  *
- 387:consol.c      ****  * Description:
- 388:consol.c      ****  *    Check (non-blocking call) if a character has been received. 
- 389:consol.c      ****  *
- 390:consol.c      ****  * Params:
- 391:consol.c      ****  *    [inout] pChar - pointer to where to place received character
- 392:consol.c      ****  *
- 393:consol.c      ****  * Returns:
- 394:consol.c      ****  *    char - TRUE if character has been received (placed at pointed location)
- 395:consol.c      ****  *           FALSE if no character has been received.
- 396:consol.c      ****  *
- 397:consol.c      ****  ****************************************************************************/
- 398:consol.c      **** char
- 399:consol.c      **** consolGetChar(char *pChar)
- 400:consol.c      **** {
- 421              		.loc 1 400 0
+ 385:consol.c      **** 
+ 386:consol.c      **** /*****************************************************************************
+ 387:consol.c      ****  *
+ 388:consol.c      ****  * Description:
+ 389:consol.c      ****  *    Check (non-blocking call) if a character has been received. 
+ 390:consol.c      ****  *
+ 391:consol.c      ****  * Params:
+ 392:consol.c      ****  *    [inout] pChar - pointer to where to place received character
+ 393:consol.c      ****  *
+ 394:consol.c      ****  * Returns:
+ 395:consol.c      ****  *    char - TRUE if character has been received (placed at pointed location)
+ 396:consol.c      ****  *           FALSE if no character has been received.
+ 397:consol.c      ****  *
+ 398:consol.c      ****  ****************************************************************************/
+ 399:consol.c      **** char
+ 400:consol.c      **** consolGetChar(char *pChar)
+ 401:consol.c      **** {
+ 421              		.loc 1 401 0
  422              		@ Function supports interworking.
  423              		@ args = 0, pretend = 0, frame = 0
  424              		@ frame_needed = 0, uses_anonymous_args = 0
  425              		@ link register save eliminated.
  426              	.LVL24:
- 401:consol.c      ****   if((UART_LSR & 0x01) != 0x00)
- 427              		.loc 1 401 0
+ 402:consol.c      ****   if((UART_LSR & 0x01) != 0x00)
+ 427              		.loc 1 402 0
  428 029c 18209FE5 		ldr	r2, .L80
  429 02a0 143092E5 		ldr	r3, [r2, #20]
  430 02a4 013013E2 		ands	r3, r3, #1
- 402:consol.c      ****   {
- 403:consol.c      ****     *pChar = UART_RBR;
- 431              		.loc 1 403 0
+ 403:consol.c      ****   {
+ 404:consol.c      ****     *pChar = UART_RBR;
+ 431              		.loc 1 404 0
  432 02a8 00309215 		ldrne	r3, [r2, #0]
  433 02ac 0030C015 		strneb	r3, [r0, #0]
  434 02b0 0130A013 		movne	r3, #1
- 404:consol.c      ****     return 1;
- 405:consol.c      ****   }
- 406:consol.c      ****   return 0;
- 407:consol.c      **** }
- 435              		.loc 1 407 0
+ 405:consol.c      ****     return 1;
+ 406:consol.c      ****   }
+ 407:consol.c      ****   return 0;
+ 408:consol.c      **** }
+ 435              		.loc 1 408 0
  436 02b4 0300A0E1 		mov	r0, r3
  437              	.LVL25:
- 438              		.loc 1 400 0
+ 438              		.loc 1 401 0
  439              		@ lr needed for prologue
- 440              		.loc 1 407 0
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 16
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 16
 
 
+ 440              		.loc 1 408 0
  441 02b8 1EFF2FE1 		bx	lr
  442              	.L81:
  443              		.align	2
@@ -918,27 +919,27 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  455              		.type	consolGetString, %function
  456              	consolGetString:
  457              	.LFB12:
- 408:consol.c      **** 
- 409:consol.c      **** /*****************************************************************************
- 410:consol.c      ****  *
- 411:consol.c      ****  * Description:
- 412:consol.c      ****  *    Receive (blocking call) a string (end with '\r'). 
- 413:consol.c      ****  *
- 414:consol.c      ****  * Params:
- 415:consol.c      ****  *    [inout] pString - pointer to return the received string
- 416:consol.c      ****  *
- 417:consol.c      ****  ****************************************************************************/
- 418:consol.c      **** void
- 419:consol.c      **** consolGetString(char *pString)
- 420:consol.c      **** {
- 458              		.loc 1 420 0
+ 409:consol.c      **** 
+ 410:consol.c      **** /*****************************************************************************
+ 411:consol.c      ****  *
+ 412:consol.c      ****  * Description:
+ 413:consol.c      ****  *    Receive (blocking call) a string (end with '\r'). 
+ 414:consol.c      ****  *
+ 415:consol.c      ****  * Params:
+ 416:consol.c      ****  *    [inout] pString - pointer to return the received string
+ 417:consol.c      ****  *
+ 418:consol.c      ****  ****************************************************************************/
+ 419:consol.c      **** void
+ 420:consol.c      **** consolGetString(char *pString)
+ 421:consol.c      **** {
+ 458              		.loc 1 421 0
  459              		@ Function supports interworking.
  460              		@ args = 0, pretend = 0, frame = 0
  461              		@ frame_needed = 0, uses_anonymous_args = 0
  462              	.LVL26:
  463 02c0 30402DE9 		stmfd	sp!, {r4, r5, lr}
  464              	.LCFI5:
- 465              		.loc 1 420 0
+ 465              		.loc 1 421 0
  466 02c4 0040A0E1 		mov	r4, r0
  467              	.LVL27:
  468 02c8 0050A0E1 		mov	r5, r0
@@ -946,92 +947,92 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  470 02cc 090000EA 		b	.L96
  471              	.LVL29:
  472              	.L84:
- 421:consol.c      ****   char *pString2;
- 422:consol.c      ****   char rxChar;
- 423:consol.c      **** 
- 424:consol.c      ****   pString2 = pString;
- 425:consol.c      ****   while((rxChar = consolGetCh()) != '\r')
- 426:consol.c      ****   {
- 427:consol.c      ****     if (rxChar == '\b')
- 473              		.loc 1 427 0
+ 422:consol.c      ****   char *pString2;
+ 423:consol.c      ****   char rxChar;
+ 424:consol.c      **** 
+ 425:consol.c      ****   pString2 = pString;
+ 426:consol.c      ****   while((rxChar = consolGetCh()) != '\r')
+ 427:consol.c      ****   {
+ 428:consol.c      ****     if (rxChar == '\b')
+ 473              		.loc 1 428 0
  474 02d0 080053E3 		cmp	r3, #8
  475 02d4 0500001A 		bne	.L85
  476              	.LVL30:
- 428:consol.c      ****     {
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 17
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 17
 
 
- 429:consol.c      ****       if ((int)pString2 < (int)pString)
- 477              		.loc 1 429 0
+ 429:consol.c      ****     {
+ 430:consol.c      ****       if ((int)pString2 < (int)pString)
+ 477              		.loc 1 430 0
  478 02d8 040055E1 		cmp	r5, r4
- 430:consol.c      ****       {
- 431:consol.c      ****         consolSendString("\b \b");
- 479              		.loc 1 431 0
+ 431:consol.c      ****       {
+ 432:consol.c      ****         consolSendString("\b \b");
+ 479              		.loc 1 432 0
  480 02dc 4C009FE5 		ldr	r0, .L97
- 481              		.loc 1 429 0
+ 481              		.loc 1 430 0
  482 02e0 040000AA 		bge	.L96
- 483              		.loc 1 431 0
+ 483              		.loc 1 432 0
  484 02e4 FEFFFFEB 		bl	consolSendString
  485              	.LVL31:
- 432:consol.c      ****         pString--;
- 486              		.loc 1 432 0
+ 433:consol.c      ****         pString--;
+ 486              		.loc 1 433 0
  487 02e8 014044E2 		sub	r4, r4, #1
  488 02ec 010000EA 		b	.L96
  489              	.LVL32:
  490              	.L85:
- 433:consol.c      ****       }
- 434:consol.c      ****     }
- 435:consol.c      ****     else
- 436:consol.c      ****     {
- 437:consol.c      ****       *pString++ = rxChar;
- 491              		.loc 1 437 0
+ 434:consol.c      ****       }
+ 435:consol.c      ****     }
+ 436:consol.c      ****     else
+ 437:consol.c      ****     {
+ 438:consol.c      ****       *pString++ = rxChar;
+ 491              		.loc 1 438 0
  492 02f0 0130C4E4 		strb	r3, [r4], #1
- 438:consol.c      ****       consolSendCh(rxChar);
- 493              		.loc 1 438 0
+ 439:consol.c      ****       consolSendCh(rxChar);
+ 493              		.loc 1 439 0
  494 02f4 FEFFFFEB 		bl	consolSendCh
  495              	.LVL33:
  496              	.L96:
  497              	.LBB12:
  498              	.LBB13:
- 499              		.loc 1 380 0
+ 499              		.loc 1 381 0
  500 02f8 34209FE5 		ldr	r2, .L97+4
  501 02fc 143092E5 		ldr	r3, [r2, #20]
  502              	.LVL34:
  503 0300 010013E3 		tst	r3, #1
  504 0304 FBFFFF0A 		beq	.L96
  505              	.LVL35:
- 506              		.loc 1 382 0
+ 506              		.loc 1 383 0
  507 0308 003092E5 		ldr	r3, [r2, #0]
  508              	.LBE13:
  509              	.LBE12:
- 510              		.loc 1 425 0
+ 510              		.loc 1 426 0
  511 030c FF3003E2 		and	r3, r3, #255
  512              	.LVL36:
  513 0310 0D0053E3 		cmp	r3, #13
- 514              		.loc 1 438 0
+ 514              		.loc 1 439 0
  515 0314 0300A0E1 		mov	r0, r3
  516              	.LVL37:
- 517              		.loc 1 425 0
+ 517              		.loc 1 426 0
  518 0318 ECFFFF1A 		bne	.L84
  519              	.LVL38:
- 439:consol.c      ****     }
- 440:consol.c      ****   }
- 441:consol.c      ****   *pString = '\0';
- 520              		.loc 1 441 0
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 18
+ 440:consol.c      ****     }
+ 441:consol.c      ****   }
+ 442:consol.c      ****   *pString = '\0';
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 18
 
 
+ 520              		.loc 1 442 0
  521 031c 0030A0E3 		mov	r3, #0
- 442:consol.c      ****   consolSendCh('\n');
- 522              		.loc 1 442 0
+ 443:consol.c      ****   consolSendCh('\n');
+ 522              		.loc 1 443 0
  523 0320 0A00A0E3 		mov	r0, #10
  524              	.LVL39:
- 525              		.loc 1 441 0
+ 525              		.loc 1 442 0
  526 0324 0030C4E5 		strb	r3, [r4, #0]
- 443:consol.c      **** }
- 527              		.loc 1 443 0
+ 444:consol.c      **** }
+ 527              		.loc 1 444 0
  528 0328 3040BDE8 		ldmfd	sp!, {r4, r5, lr}
- 529              		.loc 1 442 0
+ 529              		.loc 1 443 0
  530 032c FEFFFFEA 		b	consolSendCh
  531              	.L98:
  532              		.align	2
@@ -1045,7 +1046,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  540              		.type	simplePrintf, %function
  541              	simplePrintf:
  542              	.LFB9:
- 543              		.loc 1 356 0
+ 543              		.loc 1 357 0
  544              		@ Function supports interworking.
  545              		@ args = 4, pretend = 16, frame = 4
  546              		@ frame_needed = 0, uses_anonymous_args = 1
@@ -1056,14 +1057,14 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  551              	.LCFI7:
  552 0340 04D04DE2 		sub	sp, sp, #4
  553              	.LCFI8:
- 554              		.loc 1 359 0
+ 554              		.loc 1 360 0
  555 0344 18308DE2 		add	r3, sp, #24
- 556              		.loc 1 356 0
+ 556              		.loc 1 357 0
  557 0348 14609DE5 		ldr	r6, [sp, #20]
- 558              		.loc 1 360 0
+ 558              		.loc 1 361 0
  559 034c 0350A0E1 		mov	r5, r3
  560              	.LVL41:
- 561              		.loc 1 359 0
+ 561              		.loc 1 360 0
  562 0350 00308DE5 		str	r3, [sp, #0]
  563              	.LVL42:
  564 0354 020000EA 		b	.L138
@@ -1077,10 +1078,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  572              	.LVL44:
  573              	.L136:
  574              		.loc 1 108 0
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 19
+
+
  575 0360 FEFFFFEB 		bl	consolSendCh
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 19
-
-
  576              	.LVL45:
  577              	.L138:
  578              		.loc 1 104 0
@@ -1137,10 +1138,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  629              	.L112:
  630              		.loc 1 129 0
  631 03f4 004095E5 		ldr	r4, [r5, #0]
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 20
+
+
  632              	.LVL52:
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 20
-
-
  633 03f8 000000EA 		b	.L118
  634              	.LVL53:
  635              	.L119:
@@ -1197,10 +1198,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  686              	.LVL68:
  687              	.L135:
  688              		.loc 1 145 0
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 21
+
+
  689 0454 043085E2 		add	r3, r5, #4
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 21
-
-
  690              	.LVL69:
  691              		.loc 1 146 0
  692 0458 0350A0E1 		mov	r5, r3
@@ -1249,7 +1250,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  735              	.L128:
  736              	.LBE17:
  737              	.LBE16:
- 738              		.loc 1 362 0
+ 738              		.loc 1 363 0
  739 04a4 04D08DE2 		add	sp, sp, #4
  740 04a8 7040BDE8 		ldmfd	sp!, {r4, r5, r6, lr}
  741 04ac 10D08DE2 		add	sp, sp, #16
@@ -1257,10 +1258,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  743              	.L140:
  744              		.align	2
  745              	.L139:
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 22
+
+
  746 04b4 00000000 		.word	consolSendCh
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 22
-
-
  747              	.LFE9:
  748              		.size	simplePrintf, .-simplePrintf
  749              		.align	2
@@ -1268,21 +1269,21 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  751              		.type	consolGetIntNum, %function
  752              	consolGetIntNum:
  753              	.LFB13:
- 444:consol.c      **** 
- 445:consol.c      **** /*****************************************************************************
- 446:consol.c      ****  *
- 447:consol.c      ****  * Description:
- 448:consol.c      ****  *    Receive (blocking call) a number (end with '\r').
- 449:consol.c      ****  *    Accepts hexadecimal (radix 16) and integer (radix 10) numbers.
- 450:consol.c      ****  *
- 451:consol.c      ****  * Returns:
- 452:consol.c      ****  *    int - the received number
- 453:consol.c      ****  *
- 454:consol.c      ****  ****************************************************************************/
- 455:consol.c      **** int
- 456:consol.c      **** consolGetIntNum(void)
- 457:consol.c      **** {
- 754              		.loc 1 457 0
+ 445:consol.c      **** 
+ 446:consol.c      **** /*****************************************************************************
+ 447:consol.c      ****  *
+ 448:consol.c      ****  * Description:
+ 449:consol.c      ****  *    Receive (blocking call) a number (end with '\r').
+ 450:consol.c      ****  *    Accepts hexadecimal (radix 16) and integer (radix 10) numbers.
+ 451:consol.c      ****  *
+ 452:consol.c      ****  * Returns:
+ 453:consol.c      ****  *    int - the received number
+ 454:consol.c      ****  *
+ 455:consol.c      ****  ****************************************************************************/
+ 456:consol.c      **** int
+ 457:consol.c      **** consolGetIntNum(void)
+ 458:consol.c      **** {
+ 754              		.loc 1 458 0
  755              		@ Function supports interworking.
  756              		@ args = 0, pretend = 0, frame = 32
  757              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -1290,82 +1291,82 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  759              	.LCFI9:
  760 04bc 20D04DE2 		sub	sp, sp, #32
  761              	.LCFI10:
- 458:consol.c      ****   char  abStr[30];
- 459:consol.c      ****   char *pString = abStr;
- 460:consol.c      ****   int   wBase=10;
- 461:consol.c      ****   int   wMinus=0;
- 462:consol.c      ****   int   wLastIndex;
- 463:consol.c      ****   int   wResult=0;
- 464:consol.c      ****   int   wI;
- 465:consol.c      ****         
- 466:consol.c      ****   consolGetString(pString);
- 762              		.loc 1 466 0
+ 459:consol.c      ****   char  abStr[30];
+ 460:consol.c      ****   char *pString = abStr;
+ 461:consol.c      ****   int   wBase=10;
+ 462:consol.c      ****   int   wMinus=0;
+ 463:consol.c      ****   int   wLastIndex;
+ 464:consol.c      ****   int   wResult=0;
+ 465:consol.c      ****   int   wI;
+ 466:consol.c      ****         
+ 467:consol.c      ****   consolGetString(pString);
+ 762              		.loc 1 467 0
  763 04c0 02408DE2 		add	r4, sp, #2
  764 04c4 0400A0E1 		mov	r0, r4
  765 04c8 FEFFFFEB 		bl	consolGetString
- 467:consol.c      ****         
- 468:consol.c      ****   if(pString[0] == '-')
- 766              		.loc 1 468 0
+ 468:consol.c      ****         
+ 469:consol.c      ****   if(pString[0] == '-')
+ 766              		.loc 1 469 0
  767 04cc 0230DDE5 		ldrb	r3, [sp, #2]	@ zero_extendqisi2
  768 04d0 2D0053E3 		cmp	r3, #45
  769 04d4 01408402 		addeq	r4, r4, #1
  770              	.LVL82:
- 469:consol.c      ****   {
- 470:consol.c      ****     wMinus = 1;
- 471:consol.c      ****     pString++;
- 472:consol.c      ****   }
- 473:consol.c      **** 
- 474:consol.c      ****   if(pString[0] == '0' && (pString[1] == 'x' || pString[1] == 'X'))
- 771              		.loc 1 474 0
+ 470:consol.c      ****   {
+ 471:consol.c      ****     wMinus = 1;
+ 472:consol.c      ****     pString++;
+ 473:consol.c      ****   }
+ 474:consol.c      **** 
+ 475:consol.c      ****   if(pString[0] == '0' && (pString[1] == 'x' || pString[1] == 'X'))
+ 771              		.loc 1 475 0
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 23
+
+
  772 04d8 0030D4E5 		ldrb	r3, [r4, #0]	@ zero_extendqisi2
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 23
-
-
- 773              		.loc 1 468 0
+ 773              		.loc 1 469 0
  774 04dc 0160A003 		moveq	r6, #1
  775              	.LVL83:
  776 04e0 0060A013 		movne	r6, #0
- 777              		.loc 1 474 0
+ 777              		.loc 1 475 0
  778 04e4 300053E3 		cmp	r3, #48
  779 04e8 0500001A 		bne	.L145
  780 04ec 0130D4E5 		ldrb	r3, [r4, #1]	@ zero_extendqisi2
  781 04f0 580053E3 		cmp	r3, #88
  782 04f4 78005313 		cmpne	r3, #120
- 475:consol.c      ****   {
- 476:consol.c      ****     wBase = 16;
- 477:consol.c      ****     pString += 2;
- 783              		.loc 1 477 0
+ 476:consol.c      ****   {
+ 477:consol.c      ****     wBase = 16;
+ 478:consol.c      ****     pString += 2;
+ 783              		.loc 1 478 0
  784 04f8 02408402 		addeq	r4, r4, #2
  785 04fc 1050A003 		moveq	r5, #16
  786              	.LVL84:
- 787              		.loc 1 474 0
+ 787              		.loc 1 475 0
  788 0500 0000000A 		beq	.L148
  789              	.L145:
- 790              		.loc 1 477 0
+ 790              		.loc 1 478 0
  791 0504 0A50A0E3 		mov	r5, #10
  792              	.L148:
- 478:consol.c      ****   }
- 479:consol.c      **** 
- 480:consol.c      ****   wLastIndex = strlen(pString) - 1;
- 793              		.loc 1 480 0
+ 479:consol.c      ****   }
+ 480:consol.c      **** 
+ 481:consol.c      ****   wLastIndex = strlen(pString) - 1;
+ 793              		.loc 1 481 0
  794 0508 0400A0E1 		mov	r0, r4
  795 050c FEFFFFEB 		bl	strlen
  796 0510 01C040E2 		sub	ip, r0, #1
  797              	.LVL85:
- 481:consol.c      ****   if(pString[wLastIndex] == 'h' || pString[wLastIndex] == 'H')
- 798              		.loc 1 481 0
+ 482:consol.c      ****   if(pString[wLastIndex] == 'h' || pString[wLastIndex] == 'H')
+ 798              		.loc 1 482 0
  799 0514 0C30D4E7 		ldrb	r3, [r4, ip]	@ zero_extendqisi2
  800 0518 480053E3 		cmp	r3, #72
  801 051c 68005313 		cmpne	r3, #104
  802 0520 0500001A 		bne	.L149
- 482:consol.c      ****   {
- 483:consol.c      ****     wBase = 16;
- 484:consol.c      ****     pString[wLastIndex] = 0;
- 803              		.loc 1 484 0
+ 483:consol.c      ****   {
+ 484:consol.c      ****     wBase = 16;
+ 485:consol.c      ****     pString[wLastIndex] = 0;
+ 803              		.loc 1 485 0
  804 0524 0030A0E3 		mov	r3, #0
  805 0528 0C30C4E7 		strb	r3, [r4, ip]
- 485:consol.c      ****     wLastIndex--;
- 806              		.loc 1 485 0
+ 486:consol.c      ****     wLastIndex--;
+ 806              		.loc 1 486 0
  807 052c 01C04CE2 		sub	ip, ip, #1
  808              	.L151:
  809 0530 0000A0E3 		mov	r0, #0
@@ -1375,80 +1376,80 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  813 0538 0F0000EA 		b	.L152
  814              	.LVL88:
  815              	.L149:
- 486:consol.c      ****   }
- 487:consol.c      **** 
- 488:consol.c      ****   if(wBase == 10)
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 24
+ 487:consol.c      ****   }
+ 488:consol.c      **** 
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 24
 
 
- 816              		.loc 1 488 0
+ 489:consol.c      ****   if(wBase == 10)
+ 816              		.loc 1 489 0
  817 053c 0A0055E3 		cmp	r5, #10
  818 0540 FAFFFF1A 		bne	.L151
- 489:consol.c      ****   {
- 490:consol.c      ****     wResult = atoi(pString);
- 819              		.loc 1 490 0
+ 490:consol.c      ****   {
+ 491:consol.c      ****     wResult = atoi(pString);
+ 819              		.loc 1 491 0
  820 0544 0400A0E1 		mov	r0, r4
  821 0548 FEFFFFEB 		bl	atoi
  822              	.LVL89:
  823 054c 0C0000EA 		b	.L166
  824              	.LVL90:
  825              	.L156:
- 491:consol.c      ****     wResult = wMinus ? (-1*wResult):wResult;
- 492:consol.c      ****   }
- 493:consol.c      ****   else
- 494:consol.c      ****   {
- 495:consol.c      ****     for(wI=0; wI<=wLastIndex; wI++)
- 496:consol.c      ****     {
- 497:consol.c      ****       if(__isalpha(pString[wI]))
- 826              		.loc 1 497 0
+ 492:consol.c      ****     wResult = wMinus ? (-1*wResult):wResult;
+ 493:consol.c      ****   }
+ 494:consol.c      ****   else
+ 495:consol.c      ****   {
+ 496:consol.c      ****     for(wI=0; wI<=wLastIndex; wI++)
+ 497:consol.c      ****     {
+ 498:consol.c      ****       if(__isalpha(pString[wI]))
+ 826              		.loc 1 498 0
  827 0550 0420DEE7 		ldrb	r2, [lr, r4]	@ zero_extendqisi2
  828 0554 0012A0E1 		mov	r1, r0, asl #4
  829 0558 390052E3 		cmp	r2, #57
- 498:consol.c      ****       {
- 499:consol.c      ****         if(__isupper(pString[wI]))
- 500:consol.c      ****           wResult = (wResult<<4) + pString[wI] - 'A' + 10;
- 501:consol.c      ****         else
- 502:consol.c      ****           wResult = (wResult<<4) + pString[wI] - 'a' + 10;
- 503:consol.c      ****       }
- 504:consol.c      ****       else
- 505:consol.c      ****       {
- 506:consol.c      ****         wResult = (wResult<<4) + pString[wI] - '0';
- 830              		.loc 1 506 0
+ 499:consol.c      ****       {
+ 500:consol.c      ****         if(__isupper(pString[wI]))
+ 501:consol.c      ****           wResult = (wResult<<4) + pString[wI] - 'A' + 10;
+ 502:consol.c      ****         else
+ 503:consol.c      ****           wResult = (wResult<<4) + pString[wI] - 'a' + 10;
+ 504:consol.c      ****       }
+ 505:consol.c      ****       else
+ 506:consol.c      ****       {
+ 507:consol.c      ****         wResult = (wResult<<4) + pString[wI] - '0';
+ 830              		.loc 1 507 0
  831 055c 000282E0 		add	r0, r2, r0, asl #4
  832              	.LVL91:
  833 0560 30004092 		subls	r0, r0, #48
  834              	.LVL92:
- 835              		.loc 1 497 0
+ 835              		.loc 1 498 0
  836 0564 0300009A 		bls	.L161
- 837              		.loc 1 500 0
+ 837              		.loc 1 501 0
  838 0568 023081E0 		add	r3, r1, r2
- 839              		.loc 1 499 0
+ 839              		.loc 1 500 0
  840 056c 200012E3 		tst	r2, #32
- 841              		.loc 1 500 0
+ 841              		.loc 1 501 0
  842 0570 370043E2 		sub	r0, r3, #55
- 843              		.loc 1 502 0
+ 843              		.loc 1 503 0
  844 0574 57004312 		subne	r0, r3, #87
  845              	.L161:
- 846              		.loc 1 495 0
+ 846              		.loc 1 496 0
  847 0578 01E08EE2 		add	lr, lr, #1
  848              	.L152:
  849 057c 0C005EE1 		cmp	lr, ip
  850 0580 F2FFFFDA 		ble	.L156
  851              	.L166:
- 507:consol.c      ****       }
- 508:consol.c      ****     }
- 509:consol.c      ****     wResult = wMinus ? (-1*wResult):wResult;
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 25
+ 508:consol.c      ****       }
+ 509:consol.c      ****     }
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 25
 
 
- 852              		.loc 1 509 0
+ 510:consol.c      ****     wResult = wMinus ? (-1*wResult):wResult;
+ 852              		.loc 1 510 0
  853 0584 000056E3 		cmp	r6, #0
  854 0588 00006012 		rsbne	r0, r0, #0
  855              	.LVL93:
- 510:consol.c      ****   }
- 511:consol.c      ****   return wResult;
- 512:consol.c      **** }
- 856              		.loc 1 512 0
+ 511:consol.c      ****   }
+ 512:consol.c      ****   return wResult;
+ 513:consol.c      **** }
+ 856              		.loc 1 513 0
  857 058c 20D08DE2 		add	sp, sp, #32
  858 0590 7040BDE8 		ldmfd	sp!, {r4, r5, r6, lr}
  859 0594 1EFF2FE1 		bx	lr
@@ -1459,23 +1460,23 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  864              		.type	consolScanf, %function
  865              	consolScanf:
  866              	.LFB14:
- 513:consol.c      **** 
- 514:consol.c      **** /*****************************************************************************
- 515:consol.c      ****  *
- 516:consol.c      ****  * Description:
- 517:consol.c      ****  *    A simple implementation of the scanf()-function. 
- 518:consol.c      ****  *
- 519:consol.c      ****  * Params:
- 520:consol.c      ****  *    [inout] pFmt - format string, accepts:
- 521:consol.c      ****  *                   %s - string
- 522:consol.c      ****  *                   %c - character
- 523:consol.c      ****  *                   %i - integer
- 524:consol.c      ****  *
- 525:consol.c      ****  ****************************************************************************/
- 526:consol.c      **** void
- 527:consol.c      **** consolScanf(char *pFmt, ...)
- 528:consol.c      **** {
- 867              		.loc 1 528 0
+ 514:consol.c      **** 
+ 515:consol.c      **** /*****************************************************************************
+ 516:consol.c      ****  *
+ 517:consol.c      ****  * Description:
+ 518:consol.c      ****  *    A simple implementation of the scanf()-function. 
+ 519:consol.c      ****  *
+ 520:consol.c      ****  * Params:
+ 521:consol.c      ****  *    [inout] pFmt - format string, accepts:
+ 522:consol.c      ****  *                   %s - string
+ 523:consol.c      ****  *                   %c - character
+ 524:consol.c      ****  *                   %i - integer
+ 525:consol.c      ****  *
+ 526:consol.c      ****  ****************************************************************************/
+ 527:consol.c      **** void
+ 528:consol.c      **** consolScanf(char *pFmt, ...)
+ 529:consol.c      **** {
+ 867              		.loc 1 529 0
  868              		@ Function supports interworking.
  869              		@ args = 4, pretend = 16, frame = 4
  870              		@ frame_needed = 0, uses_anonymous_args = 1
@@ -1486,35 +1487,35 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  875              	.LCFI12:
  876 05a0 04D04DE2 		sub	sp, sp, #4
  877              	.LCFI13:
- 878              		.loc 1 528 0
+ 878              		.loc 1 529 0
  879 05a4 10509DE5 		ldr	r5, [sp, #16]
- 529:consol.c      ****   va_list pArg;
- 530:consol.c      ****   char    character;
- 531:consol.c      ****   int    *pInt;
- 532:consol.c      ****   char   *pChar;
- 533:consol.c      ****         
- 534:consol.c      ****   va_start(pArg, pFmt);
- 880              		.loc 1 534 0
+ 530:consol.c      ****   va_list pArg;
+ 531:consol.c      ****   char    character;
+ 532:consol.c      ****   int    *pInt;
+ 533:consol.c      ****   char   *pChar;
+ 534:consol.c      ****         
+ 535:consol.c      ****   va_start(pArg, pFmt);
+ 880              		.loc 1 535 0
  881 05a8 14308DE2 		add	r3, sp, #20
  882 05ac 00308DE5 		str	r3, [sp, #0]
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 26
+
+
  883              	.LVL95:
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 26
-
-
  884 05b0 290000EA 		b	.L187
  885              	.LVL96:
  886              	.L169:
- 535:consol.c      ****   while((character = *pFmt++) != '\0')
- 536:consol.c      ****   {
- 537:consol.c      ****     if(character != '%')continue;
- 887              		.loc 1 537 0
+ 536:consol.c      ****   while((character = *pFmt++) != '\0')
+ 537:consol.c      ****   {
+ 538:consol.c      ****     if(character != '%')continue;
+ 887              		.loc 1 538 0
  888 05b4 250053E3 		cmp	r3, #37
- 889              		.loc 1 535 0
+ 889              		.loc 1 536 0
  890 05b8 015085E2 		add	r5, r5, #1
- 891              		.loc 1 537 0
+ 891              		.loc 1 538 0
  892 05bc 2600001A 		bne	.L187
- 538:consol.c      ****     switch(*pFmt)
- 893              		.loc 1 538 0
+ 539:consol.c      ****     switch(*pFmt)
+ 893              		.loc 1 539 0
  894 05c0 0030D5E5 		ldrb	r3, [r5, #0]	@ zero_extendqisi2
  895              	.LVL97:
  896 05c4 530053E3 		cmp	r3, #83
@@ -1534,49 +1535,49 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  910 05f8 1700001A 		bne	.L187
  911 05fc 0C0000EA 		b	.L171
  912              	.L173:
- 539:consol.c      ****     {
- 540:consol.c      ****     case 's':
- 541:consol.c      ****     case 'S':
- 542:consol.c      ****       pChar = va_arg (pArg, char *);
- 913              		.loc 1 542 0
+ 540:consol.c      ****     {
+ 541:consol.c      ****     case 's':
+ 542:consol.c      ****     case 'S':
+ 543:consol.c      ****       pChar = va_arg (pArg, char *);
+ 913              		.loc 1 543 0
  914 0600 00309DE5 		ldr	r3, [sp, #0]
- 543:consol.c      ****       consolGetString(pChar);
- 915              		.loc 1 543 0
+ 544:consol.c      ****       consolGetString(pChar);
+ 915              		.loc 1 544 0
  916 0604 000093E5 		ldr	r0, [r3, #0]
- 917              		.loc 1 542 0
+ 917              		.loc 1 543 0
  918 0608 043083E2 		add	r3, r3, #4
  919 060c 00308DE5 		str	r3, [sp, #0]
- 920              		.loc 1 543 0
+ 920              		.loc 1 544 0
  921 0610 FEFFFFEB 		bl	consolGetString
  922              	.LVL98:
  923 0614 100000EA 		b	.L187
  924              	.LVL99:
  925              	.L172:
- 544:consol.c      ****       break;
- 545:consol.c      ****     case 'i':
- 546:consol.c      ****     case 'I':
- 547:consol.c      ****       pInt  = va_arg (pArg, int *);
- 926              		.loc 1 547 0
+ 545:consol.c      ****       break;
+ 546:consol.c      ****     case 'i':
+ 547:consol.c      ****     case 'I':
+ 548:consol.c      ****       pInt  = va_arg (pArg, int *);
+ 926              		.loc 1 548 0
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 27
+
+
  927 0618 00309DE5 		ldr	r3, [sp, #0]
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 27
-
-
  928 061c 042083E2 		add	r2, r3, #4
  929              	.LVL100:
  930 0620 004093E5 		ldr	r4, [r3, #0]
  931 0624 00208DE5 		str	r2, [sp, #0]
- 548:consol.c      ****       *pInt = consolGetIntNum();
- 932              		.loc 1 548 0
+ 549:consol.c      ****       *pInt = consolGetIntNum();
+ 932              		.loc 1 549 0
  933 0628 FEFFFFEB 		bl	consolGetIntNum
  934 062c 000084E5 		str	r0, [r4, #0]
  935 0630 090000EA 		b	.L187
  936              	.LVL101:
  937              	.L171:
- 549:consol.c      ****       break;
- 550:consol.c      ****     case 'c':
- 551:consol.c      ****     case 'C':
- 552:consol.c      ****       pChar  = va_arg (pArg, char *);
- 938              		.loc 1 552 0
+ 550:consol.c      ****       break;
+ 551:consol.c      ****     case 'c':
+ 552:consol.c      ****     case 'C':
+ 553:consol.c      ****       pChar  = va_arg (pArg, char *);
+ 938              		.loc 1 553 0
  939 0634 00209DE5 		ldr	r2, [sp, #0]
  940              	.LVL102:
  941 0638 043082E2 		add	r3, r2, #4
@@ -1586,30 +1587,30 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  945              	.L175:
  946              	.LBB20:
  947              	.LBB21:
- 948              		.loc 1 380 0
+ 948              		.loc 1 381 0
  949 0644 2C109FE5 		ldr	r1, .L188
  950 0648 143091E5 		ldr	r3, [r1, #20]
  951 064c 010013E3 		tst	r3, #1
  952 0650 FBFFFF0A 		beq	.L175
- 953              		.loc 1 382 0
+ 953              		.loc 1 383 0
  954 0654 003091E5 		ldr	r3, [r1, #0]
  955              	.LBE21:
  956              	.LBE20:
- 553:consol.c      ****       *pChar = consolGetCh();
- 957              		.loc 1 553 0
+ 554:consol.c      ****       *pChar = consolGetCh();
+ 957              		.loc 1 554 0
  958 0658 0030C2E5 		strb	r3, [r2, #0]
  959              	.LVL104:
  960              	.L187:
- 961              		.loc 1 535 0
+ 961              		.loc 1 536 0
  962 065c 0030D5E5 		ldrb	r3, [r5, #0]	@ zero_extendqisi2
  963 0660 000053E3 		cmp	r3, #0
  964 0664 D2FFFF1A 		bne	.L169
- 554:consol.c      ****       break;
- 555:consol.c      ****     }
- 556:consol.c      ****   }
- 557:consol.c      ****   va_end(pArg);
- 558:consol.c      **** }
- 965              		.loc 1 558 0
+ 555:consol.c      ****       break;
+ 556:consol.c      ****     }
+ 557:consol.c      ****   }
+ 558:consol.c      ****   va_end(pArg);
+ 559:consol.c      **** }
+ 965              		.loc 1 559 0
  966 0668 04D08DE2 		add	sp, sp, #4
  967 066c 3040BDE8 		ldmfd	sp!, {r4, r5, lr}
  968 0670 10D08DE2 		add	sp, sp, #16
@@ -1617,10 +1618,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  970              	.L189:
  971              		.align	2
  972              	.L188:
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 28
+
+
  973 0678 00C000E0 		.word	-536821760
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 28
-
-
  974              	.LFE14:
  975              		.size	consolScanf, .-consolScanf
  976              		.section	.rodata
@@ -1677,10 +1678,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  1024 0030 0C000000 		.4byte	.LEFDE2-.LASFDE2
  1025              	.LASFDE2:
  1026 0034 00000000 		.4byte	.Lframe0
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 29
+
+
  1027 0038 84000000 		.4byte	.LFB4
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 29
-
-
  1028 003c 50000000 		.4byte	.LFE4-.LFB4
  1029              		.align	2
  1030              	.LEFDE2:
@@ -1737,10 +1738,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  1081 0092 8A       		.byte	0x8a
  1082 0093 03       		.uleb128 0x3
  1083 0094 89       		.byte	0x89
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 30
+
+
  1084 0095 04       		.uleb128 0x4
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 30
-
-
  1085 0096 88       		.byte	0x88
  1086 0097 05       		.uleb128 0x5
  1087 0098 87       		.byte	0x87
@@ -1797,10 +1798,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  1138              		.4byte	.LCFI6-.LFB9
  1139 00ed 0E       		.byte	0xe
  1140 00ee 10       		.uleb128 0x10
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 31
+
+
  1141 00ef 44       		.byte	0x4
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 31
-
-
  1142              		.4byte	.LCFI7-.LCFI6
  1143 00f0 0E       		.byte	0xe
  1144 00f1 20       		.uleb128 0x20
@@ -1857,10 +1858,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  1195 0130 98050000 		.4byte	.LFB14
  1196 0134 E4000000 		.4byte	.LFE14-.LFB14
  1197 0138 44       		.byte	0x4
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 32
+
+
  1198              		.4byte	.LCFI11-.LFB14
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 32
-
-
  1199 0139 0E       		.byte	0xe
  1200 013a 10       		.uleb128 0x10
  1201 013b 44       		.byte	0x4
@@ -1917,10 +1918,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  1252 0037 18000000 		.4byte	.LVL1-.Ltext0
  1253 003b 84000000 		.4byte	.LFE2-.Ltext0
  1254 003f 0100     		.2byte	0x1
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 33
+
+
  1255 0041 57       		.byte	0x57
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 33
-
-
  1256 0042 00000000 		.4byte	0x0
  1257 0046 00000000 		.4byte	0x0
  1258              	.LLST2:
@@ -1977,10 +1978,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  1309 00d2 6C010000 		.4byte	.LCFI4-.Ltext0
  1310 00d6 0200     		.2byte	0x2
  1311 00d8 7D       		.byte	0x7d
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 34
+
+
  1312 00d9 24       		.sleb128 36
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 34
-
-
  1313 00da 6C010000 		.4byte	.LCFI4-.Ltext0
  1314 00de 7C020000 		.4byte	.LFE8-.Ltext0
  1315 00e2 0300     		.2byte	0x3
@@ -2037,10 +2038,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  1366 0168 00000000 		.4byte	0x0
  1367 016c 00000000 		.4byte	0x0
  1368              	.LLST15:
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 35
+
+
  1369 0170 88010000 		.4byte	.LVL12-.Ltext0
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 35
-
-
  1370 0174 D8010000 		.4byte	.LVL17-.Ltext0
  1371 0178 0100     		.2byte	0x1
  1372 017a 54       		.byte	0x54
@@ -2097,10 +2098,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  1423 0202 CC020000 		.4byte	.LVL28-.Ltext0
  1424 0206 D0020000 		.4byte	.LVL29-.Ltext0
  1425 020a 0100     		.2byte	0x1
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 36
+
+
  1426 020c 55       		.byte	0x55
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 36
-
-
  1427 020d D0020000 		.4byte	.LVL29-.Ltext0
  1428 0211 08030000 		.4byte	.LVL35-.Ltext0
  1429 0215 0100     		.2byte	0x1
@@ -2157,10 +2158,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  1480 029f 0200     		.2byte	0x2
  1481 02a1 7D       		.byte	0x7d
  1482 02a2 20       		.sleb128 32
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 37
+
+
  1483 02a3 44030000 		.4byte	.LCFI8-.Ltext0
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 37
-
-
  1484 02a7 B8040000 		.4byte	.LFE9-.Ltext0
  1485 02ab 0200     		.2byte	0x2
  1486 02ad 7D       		.byte	0x7d
@@ -2217,10 +2218,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  1537 0335 54       		.byte	0x54
  1538 0336 A4040000 		.4byte	.LVL81-.Ltext0
  1539 033a B8040000 		.4byte	.LFE9-.Ltext0
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 38
+
+
  1540 033e 0100     		.2byte	0x1
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 38
-
-
  1541 0340 54       		.byte	0x54
  1542 0341 00000000 		.4byte	0x0
  1543 0345 00000000 		.4byte	0x0
@@ -2277,10 +2278,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  1594 03d1 74040000 		.4byte	.LVL73-.Ltext0
  1595 03d5 0100     		.2byte	0x1
  1596 03d7 50       		.byte	0x50
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 39
+
+
  1597 03d8 80040000 		.4byte	.LVL75-.Ltext0
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 39
-
-
  1598 03dc 88040000 		.4byte	.LVL76-.Ltext0
  1599 03e0 0100     		.2byte	0x1
  1600 03e2 50       		.byte	0x50
@@ -2337,10 +2338,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  1651 046c 14040000 		.4byte	.LVL58-.Ltext0
  1652 0470 2C040000 		.4byte	.LVL62-.Ltext0
  1653 0474 0100     		.2byte	0x1
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 40
+
+
  1654 0476 53       		.byte	0x53
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 40
-
-
  1655 0477 30040000 		.4byte	.LVL63-.Ltext0
  1656 047b 40040000 		.4byte	.LVL65-.Ltext0
  1657 047f 0100     		.2byte	0x1
@@ -2397,10 +2398,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  1708 0507 0100     		.2byte	0x1
  1709 0509 50       		.byte	0x50
  1710 050a 50050000 		.4byte	.LVL90-.Ltext0
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 41
+
+
  1711 050e 60050000 		.4byte	.LVL91-.Ltext0
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 41
-
-
  1712 0512 0100     		.2byte	0x1
  1713 0514 50       		.byte	0x50
  1714 0515 64050000 		.4byte	.LVL92-.Ltext0
@@ -2457,10 +2458,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  1765              	.LLST35:
  1766 059c B4050000 		.4byte	.LVL96-.Ltext0
  1767 05a0 C4050000 		.4byte	.LVL97-.Ltext0
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 42
+
+
  1768 05a4 0100     		.2byte	0x1
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 42
-
-
  1769 05a6 53       		.byte	0x53
  1770 05a7 5C060000 		.4byte	.LVL104-.Ltext0
  1771 05ab 7C060000 		.4byte	.LFE14-.Ltext0
@@ -2517,10 +2518,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  1822 003f 04       		.byte	0x4
  1823 0040 07       		.byte	0x7
  1824 0041 03       		.uleb128 0x3
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 43
+
+
  1825 0042 EF010000 		.4byte	.LASF3
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 43
-
-
  1826 0046 04       		.byte	0x4
  1827 0047 07       		.byte	0x7
  1828 0048 03       		.uleb128 0x3
@@ -2572,23 +2573,23 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  1874 00a0 01       		.byte	0x1
  1875 00a1 55000000 		.4byte	.LASF18
  1876 00a5 01       		.byte	0x1
- 1877 00a6 E3       		.byte	0xe3
+ 1877 00a6 E4       		.byte	0xe4
  1878 00a7 01       		.byte	0x1
  1879 00a8 01       		.byte	0x1
  1880 00a9 09       		.uleb128 0x9
  1881 00aa E7000000 		.4byte	.LASF11
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 44
+
+
  1882 00ae 01       		.byte	0x1
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 44
-
-
- 1883 00af E2       		.byte	0xe2
+ 1883 00af E3       		.byte	0xe3
  1884 00b0 63000000 		.4byte	0x63
  1885 00b4 00       		.byte	0x0
  1886 00b5 0A       		.uleb128 0xa
  1887 00b6 01       		.byte	0x1
  1888 00b7 38000000 		.4byte	.LASF16
  1889 00bb 01       		.byte	0x1
- 1890 00bc 7B01     		.2byte	0x17b
+ 1890 00bc 7C01     		.2byte	0x17c
  1891 00be 01       		.byte	0x1
  1892 00bf 63000000 		.4byte	0x63
  1893 00c3 01       		.byte	0x1
@@ -2637,10 +2638,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  1936 0123 0E       		.uleb128 0xe
  1937 0124 5C010000 		.4byte	.LASF15
  1938 0128 01       		.byte	0x1
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 45
+
+
  1939 0129 3F       		.byte	0x3f
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 45
-
-
  1940 012a 54010000 		.4byte	0x154
  1941 012e 02       		.byte	0x2
  1942 012f 91       		.byte	0x91
@@ -2696,11 +2697,11 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  1992 0197 01       		.byte	0x1
  1993 0198 AC010000 		.4byte	.LASF19
  1994 019c 01       		.byte	0x1
- 1995 019d F5       		.byte	0xf5
+ 1995 019d F6       		.byte	0xf6
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 46
+
+
  1996 019e 01       		.byte	0x1
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 46
-
-
  1997 019f F4000000 		.4byte	.LFB6
  1998 01a3 38010000 		.4byte	.LFE6
  1999 01a7 01       		.byte	0x1
@@ -2708,7 +2709,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  2001 01a9 17       		.uleb128 0x17
  2002 01aa E7000000 		.4byte	.LASF11
  2003 01ae 01       		.byte	0x1
- 2004 01af F4       		.byte	0xf4
+ 2004 01af F5       		.byte	0xf5
  2005 01b0 63000000 		.4byte	0x63
  2006 01b4 01       		.byte	0x1
  2007 01b5 50       		.byte	0x50
@@ -2718,7 +2719,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  2011 01bf 00010000 		.4byte	.LBB8
  2012 01c3 18010000 		.4byte	.LBE8
  2013 01c7 01       		.byte	0x1
- 2014 01c8 F7       		.byte	0xf7
+ 2014 01c8 F8       		.byte	0xf8
  2015 01c9 19       		.uleb128 0x19
  2016 01ca 8A010000 		.4byte	0x18a
  2017 01ce 00       		.byte	0x0
@@ -2727,7 +2728,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  2020 01d4 18010000 		.4byte	.LBB10
  2021 01d8 30010000 		.4byte	.LBE10
  2022 01dc 01       		.byte	0x1
- 2023 01dd F9       		.byte	0xf9
+ 2023 01dd FA       		.byte	0xfa
  2024 01de 19       		.uleb128 0x19
  2025 01df 8A010000 		.4byte	0x18a
  2026 01e3 00       		.byte	0x0
@@ -2737,7 +2738,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  2030 01ea 01       		.byte	0x1
  2031 01eb 85010000 		.4byte	.LASF20
  2032 01ef 01       		.byte	0x1
- 2033 01f0 0701     		.2byte	0x107
+ 2033 01f0 0801     		.2byte	0x108
  2034 01f2 01       		.byte	0x1
  2035 01f3 38010000 		.4byte	.LFB7
  2036 01f7 64010000 		.4byte	.LFE7
@@ -2745,7 +2746,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  2038 01ff 1C       		.uleb128 0x1c
  2039 0200 9B000000 		.4byte	.LASF21
  2040 0204 01       		.byte	0x1
- 2041 0205 0601     		.2byte	0x106
+ 2041 0205 0701     		.2byte	0x107
  2042 0207 5D000000 		.4byte	0x5d
  2043 020b A5000000 		.4byte	.LLST8
  2044 020f 00       		.byte	0x0
@@ -2754,55 +2755,55 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  2047 0215 01       		.byte	0x1
  2048 0216 44000000 		.4byte	.LASF22
  2049 021a 01       		.byte	0x1
- 2050 021b 2201     		.2byte	0x122
+ 2050 021b 2301     		.2byte	0x123
  2051 021d 01       		.byte	0x1
  2052 021e 64010000 		.4byte	.LFB8
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 47
+
+
  2053 0222 7C020000 		.4byte	.LFE8
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 47
-
-
  2054 0226 C3000000 		.4byte	.LLST9
  2055 022a 1C       		.uleb128 0x1c
  2056 022b E2000000 		.4byte	.LASF14
  2057 022f 01       		.byte	0x1
- 2058 0230 1D01     		.2byte	0x11d
+ 2058 0230 1E01     		.2byte	0x11e
  2059 0232 48000000 		.4byte	0x48
  2060 0236 EF000000 		.4byte	.LLST10
  2061 023a 1C       		.uleb128 0x1c
  2062 023b 65010000 		.4byte	.LASF23
  2063 023f 01       		.byte	0x1
- 2064 0240 1E01     		.2byte	0x11e
+ 2064 0240 1F01     		.2byte	0x11f
  2065 0242 48000000 		.4byte	0x48
  2066 0246 0D010000 		.4byte	.LLST11
  2067 024a 1C       		.uleb128 0x1c
  2068 024b B9010000 		.4byte	.LASF24
  2069 024f 01       		.byte	0x1
- 2070 0250 1F01     		.2byte	0x11f
+ 2070 0250 2001     		.2byte	0x120
  2071 0252 48000000 		.4byte	0x48
  2072 0256 20010000 		.4byte	.LLST12
  2073 025a 1D       		.uleb128 0x1d
  2074 025b 70616400 		.ascii	"pad\000"
  2075 025f 01       		.byte	0x1
- 2076 0260 2001     		.2byte	0x120
+ 2076 0260 2101     		.2byte	0x121
  2077 0262 63000000 		.4byte	0x63
  2078 0266 33010000 		.4byte	.LLST13
  2079 026a 1C       		.uleb128 0x1c
  2080 026b 3B020000 		.4byte	.LASF13
  2081 026f 01       		.byte	0x1
- 2082 0270 2101     		.2byte	0x121
+ 2082 0270 2201     		.2byte	0x122
  2083 0272 25000000 		.4byte	0x25
  2084 0276 51010000 		.4byte	.LLST14
  2085 027a 1E       		.uleb128 0x1e
  2086 027b E5010000 		.4byte	.LASF25
  2087 027f 01       		.byte	0x1
- 2088 0280 2401     		.2byte	0x124
+ 2088 0280 2501     		.2byte	0x125
  2089 0282 5D000000 		.4byte	0x5d
  2090 0286 01       		.byte	0x1
  2091 0287 54       		.byte	0x54
  2092 0288 1F       		.uleb128 0x1f
  2093 0289 62756600 		.ascii	"buf\000"
  2094 028d 01       		.byte	0x1
- 2095 028e 2501     		.2byte	0x125
+ 2095 028e 2601     		.2byte	0x126
  2096 0290 C7020000 		.4byte	0x2c7
  2097 0294 03       		.byte	0x3
  2098 0295 91       		.byte	0x91
@@ -2810,21 +2811,21 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  2100 0298 20       		.uleb128 0x20
  2101 0299 2E000000 		.4byte	.LASF26
  2102 029d 01       		.byte	0x1
- 2103 029e 2601     		.2byte	0x126
+ 2103 029e 2701     		.2byte	0x127
  2104 02a0 3A000000 		.4byte	0x3a
  2105 02a4 70010000 		.4byte	.LLST15
  2106 02a8 21       		.uleb128 0x21
  2107 02a9 89000000 		.4byte	.LASF27
  2108 02ad 01       		.byte	0x1
- 2109 02ae 2701     		.2byte	0x127
+ 2109 02ae 2801     		.2byte	0x128
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 48
+
+
  2110 02b0 48000000 		.4byte	0x48
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 48
-
-
  2111 02b4 1E       		.uleb128 0x1e
  2112 02b5 5C010000 		.4byte	.LASF15
  2113 02b9 01       		.byte	0x1
- 2114 02ba 2301     		.2byte	0x123
+ 2114 02ba 2401     		.2byte	0x124
  2115 02bc 7E050000 		.4byte	0x57e
  2116 02c0 05       		.byte	0x5
  2117 02c1 03       		.byte	0x3
@@ -2848,7 +2849,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  2135 02eb 01       		.byte	0x1
  2136 02ec 25020000 		.4byte	.LASF28
  2137 02f0 01       		.byte	0x1
- 2138 02f1 9001     		.2byte	0x190
+ 2138 02f1 9101     		.2byte	0x191
  2139 02f3 01       		.byte	0x1
  2140 02f4 63000000 		.4byte	0x63
  2141 02f8 9C020000 		.4byte	.LFB11
@@ -2858,7 +2859,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  2145 0302 1C       		.uleb128 0x1c
  2146 0303 00000000 		.4byte	.LASF29
  2147 0307 01       		.byte	0x1
- 2148 0308 8F01     		.2byte	0x18f
+ 2148 0308 9001     		.2byte	0x190
  2149 030a 5D000000 		.4byte	0x5d
  2150 030e BA010000 		.4byte	.LLST18
  2151 0312 00       		.byte	0x0
@@ -2867,7 +2868,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  2154 0318 01       		.byte	0x1
  2155 0319 0B020000 		.4byte	.LASF30
  2156 031d 01       		.byte	0x1
- 2157 031e A401     		.2byte	0x1a4
+ 2157 031e A501     		.2byte	0x1a5
  2158 0320 01       		.byte	0x1
  2159 0321 C0020000 		.4byte	.LFB12
  2160 0325 38030000 		.4byte	.LFE12
@@ -2875,21 +2876,21 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  2162 032d 1C       		.uleb128 0x1c
  2163 032e 9B000000 		.4byte	.LASF21
  2164 0332 01       		.byte	0x1
- 2165 0333 A301     		.2byte	0x1a3
+ 2165 0333 A401     		.2byte	0x1a4
  2166 0335 5D000000 		.4byte	0x5d
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 49
+
+
  2167 0339 EC010000 		.4byte	.LLST20
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 49
-
-
  2168 033d 21       		.uleb128 0x21
  2169 033e A3010000 		.4byte	.LASF31
  2170 0342 01       		.byte	0x1
- 2171 0343 A501     		.2byte	0x1a5
+ 2171 0343 A601     		.2byte	0x1a6
  2172 0345 5D000000 		.4byte	0x5d
  2173 0349 20       		.uleb128 0x20
  2174 034a 82000000 		.4byte	.LASF32
  2175 034e 01       		.byte	0x1
- 2176 034f A601     		.2byte	0x1a6
+ 2176 034f A701     		.2byte	0x1a7
  2177 0351 63000000 		.4byte	0x63
  2178 0355 36020000 		.4byte	.LLST21
  2179 0359 24       		.uleb128 0x24
@@ -2897,7 +2898,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  2181 035e F8020000 		.4byte	.LBB12
  2182 0362 0C030000 		.4byte	.LBE12
  2183 0366 01       		.byte	0x1
- 2184 0367 A901     		.2byte	0x1a9
+ 2184 0367 AA01     		.2byte	0x1aa
  2185 0369 00       		.byte	0x0
  2186 036a 25       		.uleb128 0x25
  2187 036b C7030000 		.4byte	0x3c7
@@ -2937,10 +2938,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  2221 03af 63       		.byte	0x63
  2222 03b0 4F000000 		.4byte	0x4f
  2223 03b4 28       		.uleb128 0x28
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 50
+
+
  2224 03b5 FB000000 		.4byte	.LASF35
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 50
-
-
  2225 03b9 01       		.byte	0x1
  2226 03ba 64       		.byte	0x64
  2227 03bb 48000000 		.4byte	0x48
@@ -2954,7 +2955,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  2235 03cc 01       		.byte	0x1
  2236 03cd 11000000 		.4byte	.LASF36
  2237 03d1 01       		.byte	0x1
- 2238 03d2 6401     		.2byte	0x164
+ 2238 03d2 6501     		.2byte	0x165
  2239 03d4 01       		.byte	0x1
  2240 03d5 38030000 		.4byte	.LFB9
  2241 03d9 B8040000 		.4byte	.LFE9
@@ -2962,14 +2963,14 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  2243 03e1 1D       		.uleb128 0x1d
  2244 03e2 666D7400 		.ascii	"fmt\000"
  2245 03e6 01       		.byte	0x1
- 2246 03e7 6201     		.2byte	0x162
+ 2246 03e7 6301     		.2byte	0x163
  2247 03e9 6A000000 		.4byte	0x6a
  2248 03ed B7020000 		.4byte	.LLST23
  2249 03f1 2A       		.uleb128 0x2a
  2250 03f2 1F       		.uleb128 0x1f
  2251 03f3 617000   		.ascii	"ap\000"
  2252 03f6 01       		.byte	0x1
- 2253 03f7 6501     		.2byte	0x165
+ 2253 03f7 6601     		.2byte	0x166
  2254 03f9 90000000 		.4byte	0x90
  2255 03fd 02       		.byte	0x2
  2256 03fe 91       		.byte	0x91
@@ -2979,7 +2980,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  2260 0405 58030000 		.4byte	.LBB16
  2261 0409 A4040000 		.4byte	.LBE16
  2262 040d 01       		.byte	0x1
- 2263 040e 6801     		.2byte	0x168
+ 2263 040e 6901     		.2byte	0x169
  2264 0410 2C       		.uleb128 0x2c
  2265 0411 8D030000 		.4byte	0x38d
  2266 0415 D6020000 		.4byte	.LLST24
@@ -2997,10 +2998,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  2278 0436 A0030000 		.4byte	0x3a0
  2279 043a 49030000 		.4byte	.LLST26
  2280 043e 2E       		.uleb128 0x2e
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 51
+
+
  2281 043f AA030000 		.4byte	0x3aa
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 51
-
-
  2282 0443 17040000 		.4byte	.LLST27
  2283 0447 2E       		.uleb128 0x2e
  2284 0448 B4030000 		.4byte	0x3b4
@@ -3015,7 +3016,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  2293 045d 01       		.byte	0x1
  2294 045e 1E000000 		.4byte	.LASF37
  2295 0462 01       		.byte	0x1
- 2296 0463 C901     		.2byte	0x1c9
+ 2296 0463 CA01     		.2byte	0x1ca
  2297 0465 01       		.byte	0x1
  2298 0466 25000000 		.4byte	0x25
  2299 046a B8040000 		.4byte	.LFB13
@@ -3024,7 +3025,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  2302 0476 1E       		.uleb128 0x1e
  2303 0477 A3000000 		.4byte	.LASF38
  2304 047b 01       		.byte	0x1
- 2305 047c CA01     		.2byte	0x1ca
+ 2305 047c CB01     		.2byte	0x1cb
  2306 047e DF040000 		.4byte	0x4df
  2307 0482 02       		.byte	0x2
  2308 0483 91       		.byte	0x91
@@ -3032,43 +3033,43 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  2310 0485 1E       		.uleb128 0x1e
  2311 0486 9B000000 		.4byte	.LASF21
  2312 048a 01       		.byte	0x1
- 2313 048b CB01     		.2byte	0x1cb
+ 2313 048b CC01     		.2byte	0x1cc
  2314 048d 5D000000 		.4byte	0x5d
  2315 0491 01       		.byte	0x1
  2316 0492 54       		.byte	0x54
  2317 0493 1E       		.uleb128 0x1e
  2318 0494 D6010000 		.4byte	.LASF39
  2319 0498 01       		.byte	0x1
- 2320 0499 CC01     		.2byte	0x1cc
+ 2320 0499 CD01     		.2byte	0x1cd
  2321 049b 25000000 		.4byte	0x25
  2322 049f 01       		.byte	0x1
  2323 04a0 55       		.byte	0x55
  2324 04a1 1E       		.uleb128 0x1e
  2325 04a2 55010000 		.4byte	.LASF40
  2326 04a6 01       		.byte	0x1
- 2327 04a7 CD01     		.2byte	0x1cd
+ 2327 04a7 CE01     		.2byte	0x1ce
  2328 04a9 25000000 		.4byte	0x25
  2329 04ad 01       		.byte	0x1
  2330 04ae 56       		.byte	0x56
  2331 04af 20       		.uleb128 0x20
  2332 04b0 06000000 		.4byte	.LASF41
  2333 04b4 01       		.byte	0x1
- 2334 04b5 CE01     		.2byte	0x1ce
+ 2334 04b5 CF01     		.2byte	0x1cf
  2335 04b7 25000000 		.4byte	0x25
  2336 04bb E1040000 		.4byte	.LLST30
  2337 04bf 20       		.uleb128 0x20
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 52
+
+
  2338 04c0 33020000 		.4byte	.LASF42
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 52
-
-
  2339 04c4 01       		.byte	0x1
- 2340 04c5 CF01     		.2byte	0x1cf
+ 2340 04c5 D001     		.2byte	0x1d0
  2341 04c7 25000000 		.4byte	0x25
  2342 04cb FF040000 		.4byte	.LLST31
  2343 04cf 31       		.uleb128 0x31
  2344 04d0 774900   		.ascii	"wI\000"
  2345 04d3 01       		.byte	0x1
- 2346 04d4 D001     		.2byte	0x1d0
+ 2346 04d4 D101     		.2byte	0x1d1
  2347 04d6 25000000 		.4byte	0x25
  2348 04da 28050000 		.4byte	.LLST32
  2349 04de 00       		.byte	0x0
@@ -3084,7 +3085,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  2359 04f4 01       		.byte	0x1
  2360 04f5 01010000 		.4byte	.LASF43
  2361 04f9 01       		.byte	0x1
- 2362 04fa 1002     		.2byte	0x210
+ 2362 04fa 1102     		.2byte	0x211
  2363 04fc 01       		.byte	0x1
  2364 04fd 98050000 		.4byte	.LFB14
  2365 0501 7C060000 		.4byte	.LFE14
@@ -3092,14 +3093,14 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  2367 0509 1C       		.uleb128 0x1c
  2368 050a 6E000000 		.4byte	.LASF44
  2369 050e 01       		.byte	0x1
- 2370 050f 0F02     		.2byte	0x20f
+ 2370 050f 1002     		.2byte	0x210
  2371 0511 5D000000 		.4byte	0x5d
  2372 0515 7D050000 		.4byte	.LLST34
  2373 0519 2A       		.uleb128 0x2a
  2374 051a 1E       		.uleb128 0x1e
  2375 051b A9000000 		.4byte	.LASF45
  2376 051f 01       		.byte	0x1
- 2377 0520 1102     		.2byte	0x211
+ 2377 0520 1202     		.2byte	0x212
  2378 0522 90000000 		.4byte	0x90
  2379 0526 02       		.byte	0x2
  2380 0527 91       		.byte	0x91
@@ -3107,23 +3108,23 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  2382 0529 20       		.uleb128 0x20
  2383 052a 1B020000 		.4byte	.LASF46
  2384 052e 01       		.byte	0x1
- 2385 052f 1202     		.2byte	0x212
+ 2385 052f 1302     		.2byte	0x213
  2386 0531 63000000 		.4byte	0x63
  2387 0535 9C050000 		.4byte	.LLST35
  2388 0539 1E       		.uleb128 0x1e
  2389 053a EA010000 		.4byte	.LASF47
  2390 053e 01       		.byte	0x1
- 2391 053f 1302     		.2byte	0x213
+ 2391 053f 1402     		.2byte	0x214
  2392 0541 68050000 		.4byte	0x568
  2393 0545 01       		.byte	0x1
  2394 0546 54       		.byte	0x54
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 53
+
+
  2395 0547 20       		.uleb128 0x20
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 53
-
-
  2396 0548 00000000 		.4byte	.LASF29
  2397 054c 01       		.byte	0x1
- 2398 054d 1402     		.2byte	0x214
+ 2398 054d 1502     		.2byte	0x215
  2399 054f 5D000000 		.4byte	0x5d
  2400 0553 BA050000 		.4byte	.LLST36
  2401 0557 24       		.uleb128 0x24
@@ -3131,7 +3132,7 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  2403 055c 44060000 		.4byte	.LBB20
  2404 0560 58060000 		.4byte	.LBE20
  2405 0564 01       		.byte	0x1
- 2406 0565 2902     		.2byte	0x229
+ 2406 0565 2A02     		.2byte	0x22a
  2407 0567 00       		.byte	0x0
  2408 0568 04       		.uleb128 0x4
  2409 0569 04       		.byte	0x4
@@ -3177,10 +3178,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  2449 001b 0B       		.uleb128 0xb
  2450 001c 00       		.byte	0x0
  2451 001d 00       		.byte	0x0
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 54
+
+
  2452 001e 03       		.uleb128 0x3
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 54
-
-
  2453 001f 24       		.uleb128 0x24
  2454 0020 00       		.byte	0x0
  2455 0021 03       		.uleb128 0x3
@@ -3237,10 +3238,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  2506 0054 03       		.uleb128 0x3
  2507 0055 0E       		.uleb128 0xe
  2508 0056 3A       		.uleb128 0x3a
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 55
+
+
  2509 0057 0B       		.uleb128 0xb
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 55
-
-
  2510 0058 3B       		.uleb128 0x3b
  2511 0059 0B       		.uleb128 0xb
  2512 005a 27       		.uleb128 0x27
@@ -3297,10 +3298,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  2563 008d 11       		.uleb128 0x11
  2564 008e 01       		.uleb128 0x1
  2565 008f 12       		.uleb128 0x12
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 56
+
+
  2566 0090 01       		.uleb128 0x1
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 56
-
-
  2567 0091 40       		.uleb128 0x40
  2568 0092 06       		.uleb128 0x6
  2569 0093 00       		.byte	0x0
@@ -3357,10 +3358,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  2620 00c6 13       		.uleb128 0x13
  2621 00c7 27       		.uleb128 0x27
  2622 00c8 0C       		.uleb128 0xc
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 57
+
+
  2623 00c9 00       		.byte	0x0
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 57
-
-
  2624 00ca 00       		.byte	0x0
  2625 00cb 10       		.uleb128 0x10
  2626 00cc 05       		.uleb128 0x5
@@ -3417,10 +3418,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  2677 00ff 13       		.uleb128 0x13
  2678 0100 11       		.uleb128 0x11
  2679 0101 01       		.uleb128 0x1
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 58
+
+
  2680 0102 12       		.uleb128 0x12
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 58
-
-
  2681 0103 01       		.uleb128 0x1
  2682 0104 40       		.uleb128 0x40
  2683 0105 0A       		.uleb128 0xa
@@ -3477,10 +3478,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  2734 0138 1D       		.uleb128 0x1d
  2735 0139 01       		.byte	0x1
  2736 013a 01       		.uleb128 0x1
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 59
+
+
  2737 013b 13       		.uleb128 0x13
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 59
-
-
  2738 013c 31       		.uleb128 0x31
  2739 013d 13       		.uleb128 0x13
  2740 013e 11       		.uleb128 0x11
@@ -3537,10 +3538,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  2791 0171 40       		.uleb128 0x40
  2792 0172 06       		.uleb128 0x6
  2793 0173 00       		.byte	0x0
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 60
+
+
  2794 0174 00       		.byte	0x0
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 60
-
-
  2795 0175 1C       		.uleb128 0x1c
  2796 0176 05       		.uleb128 0x5
  2797 0177 00       		.byte	0x0
@@ -3597,10 +3598,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  2848 01aa 05       		.uleb128 0x5
  2849 01ab 49       		.uleb128 0x49
  2850 01ac 13       		.uleb128 0x13
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 61
+
+
  2851 01ad 02       		.uleb128 0x2
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 61
-
-
  2852 01ae 0A       		.uleb128 0xa
  2853 01af 00       		.byte	0x0
  2854 01b0 00       		.byte	0x0
@@ -3657,10 +3658,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  2905 01e3 3A       		.uleb128 0x3a
  2906 01e4 0B       		.uleb128 0xb
  2907 01e5 3B       		.uleb128 0x3b
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 62
+
+
  2908 01e6 05       		.uleb128 0x5
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 62
-
-
  2909 01e7 27       		.uleb128 0x27
  2910 01e8 0C       		.uleb128 0xc
  2911 01e9 49       		.uleb128 0x49
@@ -3717,10 +3718,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  2962 021c 49       		.uleb128 0x49
  2963 021d 13       		.uleb128 0x13
  2964 021e 00       		.byte	0x0
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 63
+
+
  2965 021f 00       		.byte	0x0
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 63
-
-
  2966 0220 27       		.uleb128 0x27
  2967 0221 34       		.uleb128 0x34
  2968 0222 00       		.byte	0x0
@@ -3777,10 +3778,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  3019 0255 59       		.uleb128 0x59
  3020 0256 05       		.uleb128 0x5
  3021 0257 00       		.byte	0x0
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 64
+
+
  3022 0258 00       		.byte	0x0
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 64
-
-
  3023 0259 2C       		.uleb128 0x2c
  3024 025a 05       		.uleb128 0x5
  3025 025b 00       		.byte	0x0
@@ -3837,10 +3838,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  3076 028e 12       		.uleb128 0x12
  3077 028f 01       		.uleb128 0x1
  3078 0290 40       		.uleb128 0x40
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 65
+
+
  3079 0291 06       		.uleb128 0x6
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 65
-
-
  3080 0292 00       		.byte	0x0
  3081 0293 00       		.byte	0x0
  3082 0294 31       		.uleb128 0x31
@@ -3897,10 +3898,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  3115 007b E6020000 		.4byte	0x2e6
  3116 007f 636F6E73 		.ascii	"consolGetChar\000"
  3116      6F6C4765 
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 66
+
+
  3116      74436861 
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 66
-
-
  3116      7200
  3117 008d 13030000 		.4byte	0x313
  3118 0091 636F6E73 		.ascii	"consolGetString\000"
@@ -3957,10 +3958,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  3148      65724162 
  3148      7300
  3149              	.LASF16:
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 67
+
+
  3150 0038 636F6E73 		.ascii	"consolGetCh\000"
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 67
-
-
  3150      6F6C4765 
  3150      74436800 
  3151              	.LASF22:
@@ -4017,10 +4018,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  3178 00c3 76615F6C 		.ascii	"va_list\000"
  3178      69737400 
  3179              	.LASF1:
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 68
+
+
  3180 00cb 6C6F6E67 		.ascii	"long long int\000"
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 68
-
-
  3180      206C6F6E 
  3180      6720696E 
  3180      7400
@@ -4077,10 +4078,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  3206      206C6F6E 
  3206      6720756E 
  3206      7369676E 
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 69
+
+
  3206      65642069 
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 69
-
-
  3207              	.LASF20:
  3208 0185 636F6E73 		.ascii	"consolSendString\000"
  3208      6F6C5365 
@@ -4137,10 +4138,10 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  3232      7574466E 
  3232      6B00
  3233              	.LASF30:
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 70
+
+
  3234 020b 636F6E73 		.ascii	"consolGetString\000"
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 70
-
-
  3234      6F6C4765 
  3234      74537472 
  3234      696E6700 
@@ -4160,44 +4161,44 @@ ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 1
  3242 023b 6E756D62 		.ascii	"number\000"
  3242      657200
  3243              		.ident	"GCC: (GNU) 4.1.1"
-ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s 			page 71
+ARM GAS  /cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s 			page 71
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 consol.c
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s:19     .text:00000000 printNum
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s:27     .text:00000000 $a
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s:80     .text:00000080 $d
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s:86     .text:00000084 consolInit
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s:94     .text:00000084 $a
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s:129    .text:000000cc $d
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s:136    .text:000000d4 consolSendChar
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s:145    .text:000000d4 $a
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s:159    .text:000000f0 $d
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s:165    .text:000000f4 consolSendCh
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s:173    .text:000000f4 $a
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s:211    .text:00000134 $d
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s:217    .text:00000138 consolSendString
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s:224    .text:00000138 $a
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s:251    .text:00000164 consolSendNumber
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s:385    .text:00000278 $d
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s:980    .rodata:00000000 hexChars.2029
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s:391    .text:0000027c consolGetCh
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s:401    .text:0000027c $a
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s:413    .text:00000298 $d
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s:419    .text:0000029c consolGetChar
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s:428    .text:0000029c $a
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s:445    .text:000002bc $d
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s:456    .text:000002c0 consolGetString
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s:463    .text:000002c0 $a
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s:534    .text:00000330 $d
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s:541    .text:00000338 simplePrintf
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s:548    .text:00000338 $a
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s:746    .text:000004b4 $d
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s:752    .text:000004b8 consolGetIntNum
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s:758    .text:000004b8 $a
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s:865    .text:00000598 consolScanf
-/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/ccGDJWiB.s:973    .text:00000678 $d
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s:19     .text:00000000 printNum
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s:27     .text:00000000 $a
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s:80     .text:00000080 $d
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s:86     .text:00000084 consolInit
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s:94     .text:00000084 $a
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s:129    .text:000000cc $d
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s:136    .text:000000d4 consolSendChar
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s:145    .text:000000d4 $a
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s:159    .text:000000f0 $d
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s:165    .text:000000f4 consolSendCh
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s:173    .text:000000f4 $a
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s:211    .text:00000134 $d
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s:217    .text:00000138 consolSendString
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s:224    .text:00000138 $a
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s:251    .text:00000164 consolSendNumber
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s:385    .text:00000278 $d
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s:980    .rodata:00000000 hexChars.2029
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s:391    .text:0000027c consolGetCh
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s:401    .text:0000027c $a
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s:413    .text:00000298 $d
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s:419    .text:0000029c consolGetChar
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s:428    .text:0000029c $a
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s:445    .text:000002bc $d
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s:456    .text:000002c0 consolGetString
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s:463    .text:000002c0 $a
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s:534    .text:00000330 $d
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s:541    .text:00000338 simplePrintf
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s:548    .text:00000338 $a
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s:746    .text:000004b4 $d
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s:752    .text:000004b8 consolGetIntNum
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s:758    .text:000004b8 $a
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s:865    .text:00000598 consolScanf
+/cygdrive/c/DOCUME~1/mkwapisz/LOCALS~1/Temp/cckmB7se.s:973    .text:00000678 $d
 
 UNDEFINED SYMBOLS
 __umodsi3

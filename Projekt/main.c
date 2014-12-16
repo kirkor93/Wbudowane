@@ -36,6 +36,7 @@ static tU8 pid4;
 static tU8 pid5;
 
 int timerCnt = 0;
+int lifes = 3;
 
 static void proc1(void* arg);
 static void proc2(void* arg);
@@ -65,8 +66,8 @@ main(void)
   tU8 pid;
 
   //immediately turn off buzzer (if connected)
-  IODIR0 |= 0x00000080;
-  IOSET0  = 0x00000080;
+  //IODIR0 |= 0x00000080;
+  //IOSET0  = 0x00000080;
   
   osInit();
   osCreateProcess(initProc, initStack, INIT_STACK_SIZE, &pid, 1, NULL, &error);
@@ -145,7 +146,7 @@ proc1(void* arg)
     //
     //Test EEPROM via I2C
     //
-    testI2C();
+    //testI2C();
 
 
     //
