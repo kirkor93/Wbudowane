@@ -20,6 +20,7 @@
 
 extern int timerCnt;
 extern int lifes;
+extern int showResult;
 
 /*****************************************************************************
  *
@@ -224,11 +225,27 @@ testLcd(void)
 	//writeNewLine();
 	//writeInt(12345);
 	//osSleep(2000);
-	writeInt(timerCnt);
-	writeNewLine();
-	writeString("Liczba zyc: ");
-	writeInt(lifes);
-	osSleep(50);
+	if(lifes > 0 && showResult == 1)
+	{
+		  lcdBacklight(TRUE);
+		writeInt(timerCnt / 2);	//bo delay = 2ms
+		writeNewLine();
+		writeString("Liczba zyc: ");
+		writeInt(lifes);
+		osSleep(100);
+		showResult = 0;
+	}
+	else if(showResult == 1)
+	{
+		  lcdBacklight(TRUE);
+		writeString("PRZEGRALES");
+		osSleep(100);
+	}
+	else
+	{
+		  lcdBacklight(FALSE);
+		clearLCD();
+	}
 	clearLCD();
 	//writeString(":<");
 	//osSleep(2000);

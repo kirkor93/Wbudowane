@@ -64,6 +64,7 @@ void connectPLL(void);
 
 extern int timerCnt;
 extern int lifes;
+extern int showResult;
 
 void timer(void)
 {
@@ -143,7 +144,7 @@ testLedMatrix(void)
   timer();
   IODIR0 |= SPI_CS;
 
-  testMotor(0);
+  //testMotor(0);
 
   srand(123456);
 	for( ; ; )
@@ -160,6 +161,8 @@ testLedMatrix(void)
 
 		//BUTTON END
 
+	    if(lifes > 0)
+	    {
 	    if(znak > 50)
 	    {
 	      	pattern[0] = kolko[cntA+0];
@@ -181,40 +184,86 @@ testLedMatrix(void)
 	      	pattern[5] = krzyzyk[cntA+5];
 	      	pattern[6] = krzyzyk[cntA+6];
 	      	pattern[7] = krzyzyk[cntA+7];
-	    	}
-	    testMotor(1);
+			}
+	    }
+	    else
+	    {
+	    	pattern[0] = krzyzyk2[cntA+0];
+	    		      	pattern[1] = krzyzyk2[cntA+1];
+	    		      	pattern[2] = krzyzyk2[cntA+2];
+	    		      	pattern[3] = krzyzyk2[cntA+3];
+	    		      	pattern[4] = krzyzyk2[cntA+4];
+	    		      	pattern[5] = krzyzyk2[cntA+5];
+	    		      	pattern[6] = krzyzyk2[cntA+6];
+	    		      	pattern[7] = krzyzyk2[cntA+7];
+	    }
+	    //testMotor(1);
 
 	    timerCnt = 0;
 
 	    while(1)
 	    {
-    		printf("%d\n", timerCnt);
-	    	if(timerCnt > 2000)
+	    	if(lifes>0)
 	    	{
-	    		printf("DDDD");
-	    		lifes -= 1;
+	    		testRGB(255,0,0);
+	    		printf("%d\n", timerCnt);
+	    		if(timerCnt > 2000)
+	    		{
+	    			if(pattern[0] == kolko[cntA+0])lifes-=1;
+	    			showResult = 1;
+	    			break;
+	    		}
+	    		if( !(IOPIN0 & (1<<14)) ) // Evaluates to True for a 'LOW' on P0.14
+					{
+						if(pattern[0] == krzyzyk[cntA+0])
+						{
+							testRGB(0,0,255);
+							lifes -= 1;
+						}
+						else
+						{
+							testRGB(255,255,255);
+						}
+						showResult = 1;
+						break;
+	            }
+	    	}
+	    	else
+	    	{
+	    		showResult = 1;
+	    		osSleep(1000);
 	    		break;
 	    	}
-	    	if( !(IOPIN0 & (1<<14)) ) // Evaluates to True for a 'LOW' on P0.14
-	            {
-	                if(pattern[0] == krzyzyk[cntA+0])
-	                {
-	                	testRGB(0,0,255);
-	                	lifes -= 1;
-	                }
-	                else
-	                {
-	                	testRGB(0,0,255);
-	                }
-	                break;
-	            }
 	    }
 
-        testMotor(0);
+        //testMotor(0);
 
 	
 	//while(timerCnt%100 == 0) ;
 
+	    if(lifes <= 0)
+	    {
+	    	pattern[0] = krzyzyk2[cntA+0];
+      	pattern[1] = krzyzyk2[cntA+1];
+      	pattern[2] = krzyzyk2[cntA+2];
+      	pattern[3] = krzyzyk2[cntA+3];
+      	pattern[4] = krzyzyk2[cntA+4];
+      	pattern[5] = krzyzyk2[cntA+5];
+      	pattern[6] = krzyzyk2[cntA+6];
+      	pattern[7] = krzyzyk2[cntA+7];
+	    }
+
+	    while(showResult == 1)
+	    {
+	    	if(lifes <=0)
+	    	{
+	    		testRGB(255,0,0);
+	    	}
+	    	osSleep(10);
+	    }
+
+	if(lifes > 0)
+	{
   	pattern[0] = empty[cntA+0];
   	pattern[1] = empty[cntA+1];
   	pattern[2] = empty[cntA+2];
@@ -223,6 +272,8 @@ testLedMatrix(void)
   	pattern[5] = empty[cntA+5];
   	pattern[6] = empty[cntA+6];
   	pattern[7] = empty[cntA+7];
+	}
+
 
 	osSleep(100);
 	testRGB(0,0,0);

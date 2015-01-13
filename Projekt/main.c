@@ -37,6 +37,7 @@ static tU8 pid5;
 
 int timerCnt = 0;
 int lifes = 3;
+int showResult = 0;
 
 static void proc1(void* arg);
 static void proc2(void* arg);
