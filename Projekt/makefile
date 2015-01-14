@@ -53,13 +53,10 @@ CODE    = THUMB
 # List C source files here.
 CSRCS   = main.c          \
           eeprom.c        \
-          i2c.c           \
-          testLedMatrix.c \
-          testLcd.c       \
-          testMotor.c     \
-          testRGB.c       \
-          testI2C.c       \
-          timer.c       
+          i2c.c 		  \
+          timerAndLedMatrix.c \
+          LCD.c       \
+          PWM.c       \
 
 # List assembler source files here
 ASRCS   = 
