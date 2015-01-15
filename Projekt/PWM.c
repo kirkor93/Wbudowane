@@ -8,8 +8,8 @@ void PWM(tU8 r, tU8 g, tU8 b)
 	PINSEL0 &= 0xfff03fff; 
 	PINSEL0 |= 0x000a8000;
 
-	PWM_PR = 0x00;   
-	PWM_MCR = 0x02; 
+	PWM_PR = 0x00;
+	PWM_MCR = 0x02;
 	PWM_MR0 = 0x1000;
 	//turn off all colors
 	PWM_MR2 = 0;

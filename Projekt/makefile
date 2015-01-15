@@ -52,8 +52,6 @@ CODE    = THUMB
 
 # List C source files here.
 CSRCS   = main.c          \
-          eeprom.c        \
-          i2c.c 		  \
           timerAndLedMatrix.c \
           LCD.c       \
           PWM.c       \

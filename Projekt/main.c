@@ -8,21 +8,15 @@
 #define PROC1_STACK_SIZE 2048
 #define PROC2_STACK_SIZE 2048
 #define PROC3_STACK_SIZE 2048
-#define PROC4_STACK_SIZE 2048
-#define PROC5_STACK_SIZE 2048
 #define INIT_STACK_SIZE  400
 
 static tU8 proc1Stack[PROC1_STACK_SIZE];
 static tU8 proc2Stack[PROC2_STACK_SIZE];
 static tU8 proc3Stack[PROC3_STACK_SIZE];
-static tU8 proc4Stack[PROC4_STACK_SIZE];
-static tU8 proc5Stack[PROC5_STACK_SIZE];
 static tU8 initStack[INIT_STACK_SIZE];
 static tU8 pid1;
 static tU8 pid2;
 static tU8 pid3;
-static tU8 pid4;
-static tU8 pid5;
 
 int timerCnt = 0;
 int lifes = 3;
@@ -31,16 +25,11 @@ int showResult = 0;
 static void proc1(void* arg);
 static void proc2(void* arg);
 static void proc3(void* arg);
-static void proc4(void* arg);
-static void proc5(void* arg);
 static void initProc(void* arg);
 
 void timerAndLedMatrix(void);
 void LCD(void);
-void testMotor(void);
 void PWM(void);
-void testI2C(void);
-void timer(void);
 
 int main(void)
 {

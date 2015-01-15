@@ -4,13 +4,10 @@
 #include <lpc2xxx.h>
 #include <consol.h>
 #include <config.h>
-#include 
 
 #define CRYSTAL_FREQUENCY FOSC
 #define PLL_FACTOR        PLL_MUL
 #define VPBDIV_FACTOR     PBSD
-
-#define BUZZ 7 // buzzer define
 
 #define  SPI_CS   0x00008000  //<= new board, old board = 0x00800000
 
@@ -187,7 +184,7 @@ void timerAndLedMatrix(void)
 				{
 					if (pattern[0] == krzyzyk[cntA + 0])
 					{
-						PWM(0, 0, 255);
+						PWM(0, 255, 0);
 						lifes -= 1;
 					}
 					else
